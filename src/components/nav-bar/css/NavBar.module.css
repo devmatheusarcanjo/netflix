@@ -1,0 +1,42 @@
+.container {    
+    height: 70px;
+    width: 100vw;
+    color: #fff; 
+    background-color: rgba(0,0,0,0.1)       
+}
+
+.content {
+    padding: 20px;
+    display: flex;
+    align-items: center;    
+    height: 100%;
+    overflow: hidden;
+}
+
+.logo {
+    height: 40px;
+      
+}
+
+.containerLogo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.icones {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 25px;
+}
+
+.icones > * {
+    color: white;
+}
+
+.titulo {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.4rem;
+}

@@ -1,0 +1,17 @@
+.container {
+    position: relative; 
+    display: flex;    
+    flex-wrap: nowrap; 
+}
+
+.icon1 {     
+    background-color: var(--color-black3); 
+    z-index: 1       
+}
+
+.icon2 {
+    position: absolute;
+    left: -25%;
+    top: -25%;
+    transform: rotate(-10deg);  
+}

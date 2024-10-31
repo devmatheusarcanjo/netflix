@@ -1,0 +1,34 @@
+.container {
+    background-color: var(--color-black3);
+}
+
+.containerIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.ativo {
+    color: white;    
+}
+
+.inativo {
+    color: var(--color-light-grey)
+}
+
+.text {
+    font-size: .7rem;
+}
+
+.content {
+    display: flex;
+    padding: 10px;
+}
+
+.containerIcon {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,23 @@
+:root {
+    --color-red: #E50914;       /* Vermelho */
+    --color-black: #141414; /* Preto */
+    --color-black3: #191919;   /* Preto 2 */
+    --color-black2: #242424;   /* Preto 3 */
+    --color-dark-grey: #333333; /* Cinza escuro */
+    --color-grey: #808080;      /* Cinza padrão */
+    --color-light-grey: #B3B3B3;/* Cinza claro */
+    --color-white: #FFFFFF;     /* Branco */
+    --color-dark-red: #B00710;  /* Vermelho escuro */
+    --color-green: #00B84A;     /* Verde (botões de "Play") */
+}
+
+
+:root {
+    --font-main: 'Netflix Sans', sans-serif; /* Fonte principal */
+    --font-sm: 0.875rem;   /* Fonte pequena */
+    --font-md: 1rem;      /* Fonte média */
+    --font-lg: 1.25rem;    /* Fonte grande */
+    --font-xl: 1.5rem;     /* Fonte extra grande */
+    --font-weight-reg: 400; /* Peso regular */
+    --font-weight-bold: 700; /* Peso negrito */
+}
