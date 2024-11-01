@@ -24,10 +24,18 @@ gulp.task("trazer", (cb) => {
     return cb()
 })
 
-gulp.task("enviar", (cb) => {
+gulp.task("enviarTudo", (cb) => {
     
     gulp.src([diretorioAtual + "/**/*", "!node_modules/**/*"])
     .pipe(gulp.dest(diretorioEditor))
+    
+    return cb()
+})
+
+gulp.task("enviarSrc", (cb) => {
+    
+    gulp.src([diretorioAtual + "/src/**/*", "!node_modules/**/*"])
+    .pipe(gulp.dest(diretorioEditor + "/src"))
     
     return cb()
 })
