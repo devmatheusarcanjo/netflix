@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { navBottomContext } from "@/context/NavBottomContext.jsx";
 
-function IconNavBottom({isAtivo, Active, Inactive, size, className}) {
+/*
+className={ativo === name ? styles.ativo : styles.inativo}
+isAtivo={ativo === name}
+        */
 
+function IconNavBottom({name, Active, Inactive, size}) {
+    const {ativo, styles} = useContext(navBottomContext);
 
 
     return (
       <>
-          {isAtivo ? (
-              <Active size={size} className={className}/>
+          {ativo === name ? (
+              <Active size={size} className={styles.ativo}/>
           ) : (
-              <Inactive size={size} className={className}/>
+              <Inactive size={size} className={styles.inativo}/>
           )}
       </>
     )

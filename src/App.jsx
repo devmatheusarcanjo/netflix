@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import LayoutPadrao from "./templates/LayoutDefault.jsx"
 import { FaSearch, FaDownload } from "./components/icons/Icons.jsx";
-import {VideoLine, VideoFill} from "./components/icons/Icons.jsx";
-
+import Home from "@/pages/Home.jsx"
 import styles from './App.module.css'
 
 
@@ -17,7 +16,7 @@ const [dadosHeader, setDadosHeader] = useState({
   return (
     <div className={styles.container}>
       <LayoutPadrao dadosHeader={dadosHeader}>
-          <VideoFill size={80}/>
+          <Home />
       </LayoutPadrao>
     </div>
   )

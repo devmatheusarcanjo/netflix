@@ -1,5 +1,5 @@
 import NavBar from "../components/nav-bar/NavBar.jsx";
-import NavBottom from "../components/nav-bottom/NavBottom.jsx";
+import NavBottom from "../components/nav-bottom/NavBottom2.jsx";
 import styles from "./css/LayoutDefault.module.css"
 
 export default function LayouPadrao({children, dadosHeader}) {

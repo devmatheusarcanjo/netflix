@@ -1,8 +1,15 @@
-import React, {useState} from "react";
+import {useState, useContext} from "react";
 import styles from "./css/NavBottom.module.css";
-import logo from "../../assets/images/netflix-logo-icone.svg";
-import useStateNavBottom from "../../hooks/useStateNavBottom.js";
-import IconNavBottom from "./IconNavBottom.jsx";
+import logo from "@/assets/images/netflix-logo-icone.svg";
+/*
+import useStateNavBottom from "@/hooks/useStateNavBottom.js"
+*/
+import {navBottomContext} from "@/context/NavBottomContext.jsx";
+
+import IconNavBottom from "./IconNavBottom.jsx"
+import TextNavBottom from "./TextNavBottom.jsx";
+
+
 
 
 import { GoHome,
@@ -14,7 +21,7 @@ import { GoHome,
      } from "../icons/Icons.jsx";
 
 export default function NavBottom() {
-    const [ativo, setAtivo] = useStateNavBottom("Inicio");
+    const [ativo, setAtivo] = useState("Inicio")
     
             
     const icons = [
@@ -38,28 +45,29 @@ export default function NavBottom() {
     ]
     
 
-    return (<nav className={styles.container}>
+    return (
+        <navBottomContext.Provider value={{styles, ativo, setAtivo}}>
+            <nav className={styles.container}>
         <div className={styles.content}>         
                                 
            {icons.map(({name, Active, Inactive}) => {
                return (<div className={styles.containerIcon} onClick={() => setAtivo(name)} key={name}>
                    
                    <IconNavBottom                              
-              Active={Active} 
-              className={ativo === name ? styles.ativo : styles.inativo}
-              isAtivo={ativo === name}
-              Inactive={Inactive} 
-              size={30}
-                   />
-                
-                <span className={`${ativo === name ? styles.ativo : styles.inativo} ${styles.text}`}>{name}</span>
-                
-                
+                      Active={Active} 
+                      Inactive={Inactive}                                           
+                      size={30}
+                      name={name}
+                   />                
+               
+                <TextNavBottom>{name}</TextNavBottom>                
                </div>)
            })}
                                              
         </div>
-    </nav>)
+    </nav>
+        </navBottomContext.Provider>
+    )
 }
 
 

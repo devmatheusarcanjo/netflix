@@ -10,11 +10,11 @@
 }
 
 .ativo {
-    color: white;    
+    color: var(--color-white);    
 }
 
 .inativo {
-    color: var(--color-light-grey)
+    color: var(--color-grey2); 
 }
 
 .text {
