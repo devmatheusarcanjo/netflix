@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useState, useCallback, useEffect} from "react";
 import styles from "./css/NavBar.module.css";
 import logo from "../../assets/images/netflix-logo-icone.svg"
 
 export default function NavBar({comLogo = true, titulo, icones}) {
 
+    const [scrollPosition, setScrollPosition] = useState(0);
+    
+    
+    
+    
 
     return (<nav className={styles.container}>
         <div className={styles.content}>

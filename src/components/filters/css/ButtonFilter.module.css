@@ -1,0 +1,21 @@
+.button {
+    padding: 7px 13px;
+    border-radius: 50px;
+    border: none;
+    background-color: rgba(0,0,0,0);
+    border: solid 1px var(--color-light-grey);   
+    
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+}
+
+.text {
+    font-size: var(--font-sm);
+}
+
+.button:hover {
+    background-color: #555;
+    
+}

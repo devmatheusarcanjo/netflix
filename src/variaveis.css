@@ -5,7 +5,8 @@
     --color-black2: #242424;   /* Preto 3 */
     --color-dark-grey: #333333;
     --color-grey2: #666666; /* Cinza escuro */
-    --color-grey: #808080;      /* Cinza padrão */
+    --color-grey3: #808080; 
+    --color-grey4: #ccc;      /* Cinza padrão */
     --color-light-grey: #B3B3B3;/* Cinza claro */
     --color-white: #FFFFFF;     /* Branco */
     --color-dark-red: #B00710;  /* Vermelho escuro */
@@ -15,7 +16,7 @@
 
 :root {
     --font-main: 'Netflix Sans', sans-serif; /* Fonte principal */
-    --font-sm: 0.875rem;   /* Fonte pequena */
+    --font-sm: 0.775rem;   /* Fonte pequena */
     --font-md: 1rem;      /* Fonte média */
     --font-lg: 1.25rem;    /* Fonte grande */
     --font-xl: 1.5rem;     /* Fonte extra grande */

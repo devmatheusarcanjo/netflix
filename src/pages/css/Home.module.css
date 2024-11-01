@@ -1,0 +1,6 @@
+.container {
+    height: 200vh;
+    width: 100vw;
+    position: relative;
+    padding-top: 70px;
+}
