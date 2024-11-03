@@ -3,4 +3,17 @@
     width: 100vw;
     position: relative;
     padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-image: linear-gradient(to bottom, #333, black 90vh);
+    font-size: var(--font-lg);
+    font-weight: bold;
+       
 }
+
+.crescer {
+     opacity: 1!important;
+     transform: scale(50);
+     transition: transform 3s;            
+ }

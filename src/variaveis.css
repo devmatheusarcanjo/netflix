@@ -1,6 +1,7 @@
 :root {
-    --color-red: #E50914;       /* Vermelho */
-    --color-black: #141414; /* Preto */
+    --color-red: #E50914;  /* Vermelho */
+    --color-black: #000000;    
+    --color-black1: #141414; /* Preto */
     --color-black3: #191919;   /* Preto 2 */
     --color-black2: #242424;   /* Preto 3 */
     --color-dark-grey: #333333;

@@ -13,6 +13,7 @@
 
 .text {
     font-size: var(--font-sm);
+    color: #fff
 }
 
 .button:hover {

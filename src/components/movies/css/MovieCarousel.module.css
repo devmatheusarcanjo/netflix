@@ -1,0 +1,27 @@
+.container {
+    width: 100vw;
+   
+}
+
+
+.content {    
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.padding {
+    padding: 0 10px;
+}
+
+.moviesContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;  
+    overflow-X: scroll;
+    padding: 0 10px;
+}
+
+.moviesContainer::-webkit-scrollbar {
+    display: none;
+}

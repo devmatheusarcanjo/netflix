@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Título da página</title>
+    <style>
+        
+        body {
+            background-color: black;
+            display: flex;
+            gap: 15px
+        }
+        
+        img {
+            width: 100%;            
+        }
+        
+        .item {          
+            width: 27vw;
+            border-radius: 10px;
+            overflow: hidden; 
+            position: relative;
+        }
+        
+        .over {                     
+            width: 100%;
+            height: 100%;           
+            position: absolute;
+            background-color: rgba(255,255,255,.3);               
+            border-radius: 50%;   
+            opacity: 0;
+            
+       }
+        
+        .crescer {
+            opacity: 1;
+            transform: scale(50);
+            transition: transform 3s;            
+        }
+        
+        
+        
+    </style>
+</head>
+<body name="body">
+
+    
+    
+    <div class="item" card>
+        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg" name="img" />
+        <div class="over" over></div>
+    </div>
+    
+    <div class="item" card>
+        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg" name="img" />
+        <div class="over" over></div>
+    </div>
+    
+   
+    
+    <script>
+                 
+        
+     
+   function aplicarEvento() {
+       
+       const body = document.body;
+       
+       body.addEventListener("touchstart", touchstart)
+       
+                    
+       function touchstart(event) {
+        
+         const { target } = event;   
+         const card = target.closest("[card]")  
+             
+         if(!card) return;                                                                               
+            
+         const over = card.querySelector("[over]");                      
+         const touch = event.touches[0]
+            
+         const X = touch.clientX - card.getBoundingClientRect().left;
+         const Y = touch.clientY - card.getBoundingClientRect().top;
+                               
+         over.style.top = `${Y}px`;
+         over.style.left = `${X}px`;
+       
+            
+         over.classList.add("crescer");
+         
+         body.addEventListener("touchend", (event) => {                                         
+            if(over) over.classList.remove("crescer");                        
+         }, {once: true})                                          
+   
+       }
+       
+     }
+                                        
+   
+   
+   
+   
+   
+    aplicarEvento()
+        
+        
+       
+        
+    </script>
+</body>
+</html>
