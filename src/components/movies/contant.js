@@ -505,7 +505,12 @@ export const genres = [
     }
   ]
   
-  
+
+export function getAllGenres() {
+    return genres.map(item => {
+        return item.id;
+    })
+}
   
   
 export function getGenreName(gender) {

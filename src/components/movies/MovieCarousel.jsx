@@ -1,12 +1,19 @@
-import React, {useState, useLayoutEffect, useEffect, useCallback} from "react";
+import React, {useMemo, useRef, useState, useLayoutEffect, useEffect, useCallback} from "react";
 import { getMovies } from "@/api/services/index.js";
 import MovieItem from "./MovieItem.jsx"
 import styles from "./css/MovieCarousel.module.css"
 import {response, genres, getGenreName} from "./contant.js"
+import useScrollWidthCalculation from "@/hooks/useScrollWidthCalculation.js"
 
 export default function MovieCarousel({gender}) {
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
+    const moviesContainer = useRef()
+       
+    useScrollWidthCalculation({element: moviesContainer.current, getMovies, setData, gender})
     
+   
+    
+    /*
     useEffect(() => {
          
         getMovies({
@@ -19,10 +26,14 @@ export default function MovieCarousel({gender}) {
         })                      
                                                                    
     }, [])
+    */
     
    
     const assembleCards = (data) => {
-        return <MovieItem data={data} key={data.id}/>
+        return data.map(item => {       
+           return <MovieItem data={item} key={item.id}/>                    
+                                    
+        })
     }
     
     const movies = response.results;
@@ -34,7 +45,7 @@ export default function MovieCarousel({gender}) {
             
             <div className={styles.padding}>{genderName}</div>
             
-            <div className={styles.moviesContainer}>
+            <div ref={moviesContainer} className={styles.moviesContainer}>
                 {data ? data.map(assembleCards) : "Carregando"}
             </div>
         </div>

@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <title>Título da página</title>
     <style>
-        
         body {
             background-color: black;
+            position: relative;
+               height: 100vh;
+        }
+        
+        .scroll {
             display: flex;
             flex-wrap: nowrap;
-            gap: 15px;
-            overflow: hidden;
-            max-width: 100vw;
+            gap: 15px;                                   
+            overflow-x: scroll;
+            background-color: #444
         }
         
         img {
@@ -19,7 +23,8 @@
         }
         
         .item {            
-            width: 27vw;
+            min-width: 27vw;
+            width: 27vw
             border-radius: 10px;
             overflow: hidden; 
             position: relative;
@@ -38,80 +43,80 @@
             opacity: 1;
             transform: scale(50);
             transition: transform 1.3s;
-            
         }
         
-        
+        [mostrar] {
+            position: absolute;            
+            bottom: 200px;
+            left: 50%;
+            color: white
+        }
         
     </style>
 </head>
 <body>
-    <div class="item" id="item">
+    
+    <div class="scroll" id="pai">
+    <div class="item">
         <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
-        <div class="over" id="over"></div>
+        <div class="over"></div>
+    </div>
+    <!-- Repita os itens conforme necessário -->
+    <div class="item">
+        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
+        <div class="over"></div>
+    </div>
+    <!-- Repita os itens conforme necessário -->
+    <div class="item">
+        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
+        <div class="over"></div>
+    </div>
+    <!-- Repita os itens conforme necessário -->
+    <div class="item">
+        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
+        <div class="over"></div>
+    </div>
+    <!-- Repita os itens conforme necessário -->
+    <div class="item">
+        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
+        <div class="over"></div>
+    </div>
+    <!-- Repita os itens conforme necessário -->
+    <div class="item">
+        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
+        <div class="over"></div>
+    </div>
+    <!-- Repita os itens conforme necessário -->
+    <div class="item">
+        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
+        <div class="over"></div>
+    </div>
+    <!-- Repita os itens conforme necessário -->
+    <div class="item">
+        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
+        <div class="over"></div>
+    </div>
     </div>
     
-    <div class="item" id="item">
-        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
-        <div class="over" id="over"></div>
-    </div>
     
-    <div class="item" id="item">
-        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
-        <div class="over" id="over"></div>
-    </div>
-    
-    <div class="item" id="item">
-        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
-        <div class="over" id="over"></div>
-    </div>
-    
-    <div class="item" id="item">
-        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
-        <div class="over" id="over"></div>
-    </div>
-    
-    <div class="item" id="item">
-        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
-        <div class="over" id="over"></div>
-    </div>
-    
-    <div class="item" id="item">
-        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
-        <div class="over" id="over"></div>
-    </div>
-    
-    <div class="item" id="item">
-        <img src="https://image.tmdb.org/t/p/original/wXWnUhdnSuADRp9w7aAZNHx682v.jpg">
-        <div class="over" id="over"></div>
-    </div>
-    
-    
-    
+    <div mostrar>jrob</div>
+    <!-- Repita os itens conforme necessário -->
     
     <script>
         
-        const over = document.getElementById("over");
+        const mostrar = document.querySelector("[mostrar]")
+        const pai = document.querySelector("#pai")
+        pai.addEventListener('scroll', (event) => {        
+        const target = event.target;        
+     
+       const scrollRight = target.scrollWidth - target.clientWidth - target.scrollLeft;   
+       
+       mostrar.innerHTML = parseInt(scrollRight);
+       console.log(scrollRight)             
+           
+        });
         
-        const item = document.querySelector("#item")
         
-        
-        item.addEventListener("touchstart", (event) => {       
-                        
-            const touch = event.touches[0]
-            
-            const X = touch.clientX - item.getBoundingClientRect().left;
-            const Y = touch.clientY - item.getBoundingClientRect().top;
-                               
-       over.style.top = `${Y}px`;
-       over.style.left = `${X}px`;
-            
-            over.classList.add("crescer")                                                           
-        })
-        
-        item.addEventListener("touchend", () => {                
-                over.classList.remove("crescer")                    
-        })
         
     </script>
 </body>
