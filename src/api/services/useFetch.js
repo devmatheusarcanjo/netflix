@@ -39,8 +39,7 @@ async function api(url, options) {
     
     if (options.cache) {                    
         const cache = getCache(url, {...options, cache: undefined})                                          
-      if (cache) {        
-        console.log("Itens obtidos do LocalStorage")
+      if (cache) {                
         return JSON.parse(cache)
       };
     }    

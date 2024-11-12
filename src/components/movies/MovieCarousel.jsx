@@ -9,6 +9,7 @@ export default function MovieCarousel({gender}) {
     const [data, setData] = useState([]);
     const moviesContainer = useRef()
        
+    // Carregar os itens e atualizar conforme o usuario for chegando ao fim do scroll de cada container
     useScrollWidthCalculation({element: moviesContainer.current, getMovies, setData, gender})
     
    
@@ -31,8 +32,7 @@ export default function MovieCarousel({gender}) {
    
     const assembleCards = (data) => {
         return data.map(item => {       
-           return <MovieItem data={item} key={item.id}/>                    
-                                    
+           return <MovieItem data={item} key={item.id}/>                                                        
         })
     }
     

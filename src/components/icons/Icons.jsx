@@ -1,7 +1,7 @@
 import { GoHome, GoHomeFill } from "react-icons/go";
 import { IoGameController, IoGameControllerOutline } from "react-icons/io5";
-import {IoIosArrowDown} from "react-icons/io";
-import { FaSearch, FaDownload } from "react-icons/fa";
+import {IoIosArrowDown, IoMdAdd} from "react-icons/io";
+import { FaSearch, FaDownload, FaPlay } from "react-icons/fa";
 import {VideoFill, VideoLine} from "./IconVideo.jsx";
 
 export {
@@ -13,6 +13,8 @@ export {
     FaDownload,
     VideoLine,
     VideoFill,
-    IoIosArrowDown
+    IoIosArrowDown,
+    FaPlay,
+    IoMdAdd
 }
 

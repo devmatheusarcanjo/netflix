@@ -16,6 +16,7 @@
 
 .moviesContainer {
     display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
     gap: 5px;  
     overflow-X: scroll;

@@ -11,9 +11,3 @@
     font-weight: bold;
        
 }
-
-.crescer {
-     opacity: 1!important;
-     transform: scale(50);
-     transition: transform 3s;            
- }
