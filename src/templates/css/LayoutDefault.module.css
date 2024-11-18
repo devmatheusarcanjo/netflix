@@ -1,11 +1,21 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    height: 100dvh;
-        
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  position: relative;
 }
 
 .content {
-    flex: 1;        
-    overflow: scroll;
+  flex: 1;
+  overflow: scroll;
 }
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+/* @media (min-width: 800px) {
+  .container {
+    max-width: 430px;
+  }
+} */

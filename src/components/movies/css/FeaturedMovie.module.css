@@ -1,113 +1,105 @@
 .container {
-    width: 100%;
-    height: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .containerBorder {
-    width: 80vw;
-    height: 100%;
-    padding: 0.4px; 
-    background-image: linear-gradient(180deg, transparent, #777); 
-    border-radius: 10px;
-    overflow: hidden;
-    box-sizing: border-box;    
+  width: 80%;
+  height: 100%;
+  padding: 0.9px;
+  background-image: linear-gradient(180deg, transparent, #777);
+  border-radius: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.content {    
-    width: 100%;
-    height: 100%;    
-    border-radius: inherit;
-    overflow: hidden; 
-    position: relative;              
+.content {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  position: relative;
 }
 
 .content2 {
-    padding: 15px;
-    position: absolute;
-    border-radius: inherit;            
-    width: 100%;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+  padding: 15px;
+  position: absolute;
+  border-radius: inherit;
+  width: 100%;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .containerButtons {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    gap: 10px;   
-    
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  gap: 10px;
 }
 
 .containerButtons button {
-    flex: 1;
-    border-radius: 2px; 
-    padding: 4px;
-    border: none;
-    font-weight: 500;
-    font-size: 0.8em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    
-    
-    
-    position: relative; /*.    */
-    
-}
+  flex: 1;
+  border-radius: 2px;
+  padding: 4px;
+  border: none;
+  font-weight: 500;
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 
+  position: relative; /*.    */
+}
 
 /*.    */
 
-.over {                         
-    width: 30px;
-    height: 30px;           
-    position: absolute;
-    background-color: rgba(255,255,255,.3);               
-    border-radius: 50%;   
-    opacity: 0; 
-    transition: transform 1s;      
-    z-index: 1000         
+.over {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  opacity: 0;
+  transition: transform 1s;
+  z-index: 1000;
 }
 
-
 .myListButton {
-    background-color: var(--color-grey2);
-    color: white;
+  background-color: var(--color-grey2);
+  color: white;
 }
 
 .watchButton {
-    background-color: var(--color-white);
-    color: var(--color-black)
+  background-color: var(--color-white);
+  color: var(--color-black);
 }
 
 .darken {
-    background-image: linear-gradient(180deg, transparent, black);
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
+  background-image: linear-gradient(180deg, transparent, black);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .details {
-   font-size: var(--font-sm);
-   width: 100%;
-   display: flex;
-   justify-content: space-evenly;
-   padding: 5px 0px;
+  font-size: var(--font-sm);
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px 0px;
 }
 
 .containerBorder img {
-    width: 100%; 
-    object-fit: cover;        
-     
+  width: 100%;
+  object-fit: cover;
+
   /*  border-radius: inherit; */
 }
-

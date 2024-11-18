@@ -1,28 +1,26 @@
 .container {
-    width: 100vw;
-   
+  width: 100%;
 }
 
-
-.content {    
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .padding {
-    padding: 0 10px;
+  padding: 0 10px;
 }
 
 .moviesContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 5px;  
-    overflow-X: scroll;
-    padding: 0 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 5px;
+  overflow-x: scroll;
+  padding: 0 10px;
 }
 
 .moviesContainer::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
