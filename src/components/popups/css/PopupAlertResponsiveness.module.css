@@ -10,8 +10,6 @@
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-
-  transition: all 1s;
 }
 
 .popup {
