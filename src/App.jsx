@@ -4,6 +4,8 @@ import { FaSearch, FaDownload } from './components/icons/Icons.jsx';
 import Home from '@/pages/Home.jsx';
 import styles from './App.module.css';
 import useTouchHover, { styleHover } from '@/hooks/useTouchHover.js';
+import PopupAlertResponsiveness from './components/popups/PopupAlertResponsiveness.jsx';
+import ifDeviceMobile from './utils/ifDeviceMobile.js';
 
 function App() {
   const [dadosHeader, setDadosHeader] = useState({
@@ -11,6 +13,8 @@ function App() {
     titulo: 'Minha conta',
     icones: [FaSearch, FaDownload],
   });
+
+  const mobile = ifDeviceMobile();
 
   const content = useRef(null);
   useTouchHover(content);
@@ -24,7 +28,7 @@ function App() {
         .catch(console.error);
     }
 
-    window.addEventListener(
+    content.current.addEventListener(
       'click',
       (event) => {
         console.log('foi');
@@ -35,13 +39,25 @@ function App() {
   }, [content]);
 
   return (
-    <div className={styles.containerCenter} ref={content}>
-      <div className={`${styles.container} ${styleHover.global}`}>
-        <LayoutPadrao dadosHeader={dadosHeader}>
-          <Home />
-        </LayoutPadrao>
+    <>
+      {/* Ira exibir o popup somente se o dispositivo não for mobile */}
+      {mobile ? null : (
+        <PopupAlertResponsiveness>
+          Este projeto foi desenvolvido com foco em dispositivos móveis, e
+          algumas funcionalidades podem não funcionar corretamente em outros
+          dispositivos. Para uma experiência ideal, recomendamos acessá-lo por
+          meio de um dispositivo móvel.
+        </PopupAlertResponsiveness>
+      )}
+
+      <div className={styles.containerCenter} ref={content}>
+        <div className={`${styles.container} ${styleHover.global}`}>
+          <LayoutPadrao dadosHeader={dadosHeader}>
+            <Home />
+          </LayoutPadrao>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

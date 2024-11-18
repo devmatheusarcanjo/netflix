@@ -1,0 +1,87 @@
+.container {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+
+  transition: all 1s;
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80vw;
+  background-color: rgba(173, 1, 1, 0.4);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+
+  justify-content: center;
+  border-radius: 20px;
+  gap: 20px;
+}
+
+.title {
+  color: var(--color-white);
+  margin: 0;
+}
+
+.text {
+  text-align: center;
+  font-weight: 400;
+  text-align: center;
+  color: var(--color-white);
+}
+
+.containerCheck {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.containerButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.containerCheck input[type='checkbox'] {
+  transform: scale(1.3);
+  background-color: white;
+}
+
+.buttonClose {
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  font-size: var(--font-lg);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media (min-width: 700px) {
+  .popup {
+    padding: 100px;
+  }
+
+  .containerCheck input[type='checkbox'] {
+    transform: scale(2);
+  }
+
+  .containerButtons {
+    gap: 20px;
+    width: 60%;
+  }
+}
