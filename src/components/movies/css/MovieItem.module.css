@@ -7,8 +7,34 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .item img {
   width: 100%;
 }
+
+.esqueleto {
+  width: 100%;
+  height: 100%;
+  background-color: #333333;
+  position: absolute;
+  top: 0;
+
+  /* 
+  animation-name: loadinggg;
+  animation-iteration-count: infinite;
+  animation-duration: 2s; */
+}
+
+/* @keyframes loadinggg {
+  0% {
+    background-color: #333333;
+  }
+  50% {
+    background-color: #666666;
+  }
+  100% {
+    background-color: #333333;
+  }
+} */
