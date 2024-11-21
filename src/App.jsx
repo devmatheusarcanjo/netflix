@@ -44,9 +44,9 @@ function App() {
       {mobile ? null : (
         <PopupAlertResponsiveness>
           Este projeto foi desenvolvido com foco em dispositivos móveis, e
-          algumas funcionalidades podem não funcionar corretamente em outros
-          dispositivos. Para uma experiência ideal, recomendamos acessá-lo por
-          meio de um dispositivo móvel.
+          algumas funcionalidades não funcionam corretamente neste dispositivos.
+          Para uma experiência ideal, recomendamos acessá-lo por meio de um
+          dispositivo móvel.
         </PopupAlertResponsiveness>
       )}
 
