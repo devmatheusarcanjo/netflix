@@ -43,10 +43,10 @@ function App() {
       {/* Ira exibir o popup somente se o dispositivo não for mobile */}
       {mobile ? null : (
         <PopupAlertResponsiveness>
-          Este projeto foi desenvolvido com foco em dispositivos móveis, e
-          algumas funcionalidades não funcionam corretamente neste dispositivos.
-          Para uma experiência ideal, recomendamos acessá-lo por meio de um
-          dispositivo móvel.
+          Este projeto está sendo desenvolvido com foco em dispositivos móveis,
+          e algumas funcionalidades não funcionam corretamente neste
+          dispositivos. Para uma experiência ideal, recomendamos acessá-lo por
+          meio de um dispositivo móvel.
         </PopupAlertResponsiveness>
       )}
 
