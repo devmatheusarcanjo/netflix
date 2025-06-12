@@ -10,6 +10,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* global.css */
+  --bk-mobile-max: 768px;
+  --bk-tablet-max: 1024px;
+  --bk-laptop-min: 1024px;
 }
 
 * {

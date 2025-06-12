@@ -1,53 +1,92 @@
-import React, {useMemo, useRef, useState, useLayoutEffect, useEffect, useCallback} from "react";
-import { getMovies } from "@/api/services/index.js";
-import MovieItem from "./MovieItem.jsx"
-import styles from "./css/MovieCarousel.module.css"
-import {response, genres, getGenreName} from "./contant.js"
-import useScrollWidthCalculation from "@/hooks/useScrollWidthCalculation.js"
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { getMovies } from '@/api/services/index.js';
+import MovieItem from './MovieItem.jsx';
+import styles from './css/MovieCarousel.module.css';
+import { response, genres, getGenreName } from './contant.js';
+import useScrollWidthCalculation from '@/hooks/useScrollWidthCalculation.js';
+import { RiArrowLeftWideFill, RiArrowRightWideFill } from 'react-icons/ri';
 
-export default function MovieCarousel({gender}) {
-    const [data, setData] = useState([]);
-    const moviesContainer = useRef()
-       
-    // Carregar os itens e atualizar conforme o usuario for chegando ao fim do scroll de cada container
-    useScrollWidthCalculation({element: moviesContainer.current, getMovies, setData, gender})
-    
-   
-    
-    /*
-    useEffect(() => {
-         
-        getMovies({
-          cache: true,
-          params: {
-              with_genres: gender
-          }
-        }).then(e => {                       
-            setData(e.results);
-        })                      
-                                                                   
-    }, [])
-    */
-    
-   
-    const assembleCards = (data) => {
-        return data.map(item => {       
-           return <MovieItem data={item} key={item.id}/>                                                        
-        })
+export default function MovieCarousel({ gender }) {
+  const [data, setData] = useState([]);
+  const moviesContainer = useRef();
+  const moviesParentContainer = useRef();
+  const arrowLeft = useRef();
+  const [positionScroll, setPositionScroll] = useState(0);
+
+  // Carregar os itens e atualizar conforme o usuario for chegando ao fim do scroll de cada container
+  useScrollWidthCalculation({
+    element: moviesContainer.current,
+    getMovies,
+    setData,
+    gender,
+  });
+
+  const assembleCards = (data) => {
+    return data.map((item) => {
+      return <MovieItem data={item} key={item.id} />;
+    });
+  };
+
+  // Efeito para dar scroll quando o usuario clicar no botão
+  useEffect(() => {
+    if (
+      !moviesContainer.current ||
+      !moviesParentContainer.current ||
+      !arrowLeft.current
+    )
+      return;
+    const pixels = moviesParentContainer.current.offsetWidth;
+
+    moviesContainer.current.scrollTo({
+      behavior: 'smooth',
+      left: pixels * positionScroll - 50,
+    });
+
+    if (positionScroll < 1) {
+      arrowLeft.current.style.opacity = 0;
+      arrowLeft.current.style.pointerEvents = 'none';
+    } else {
+      arrowLeft.current.style.opacity = '';
+      arrowLeft.current.style.pointerEvents = '';
     }
-    
-    const movies = response.results;
-    const genderName = getGenreName(gender);
-            
-    return (<section className={styles.container}>
-        
-        <div className={styles.content}>
-            
-            <div className={styles.padding}>{genderName}</div>
-            
-            <div ref={moviesContainer} className={styles.moviesContainer}>
-                {data ? data.map(assembleCards) : "Carregando"}
-            </div>
+  }, [positionScroll]);
+
+  const handleClick = useCallback((direction) => {
+    if (direction === 'right') return setPositionScroll((atual) => ++atual);
+
+    setPositionScroll((atual) => (atual >= 1 ? --atual : 0));
+  }, []);
+
+  const movies = response.results;
+  const genderName = getGenreName(gender);
+
+  return (
+    <section className={styles.container}>
+      <div className={styles.content}>
+        <div className={styles.padding}>{genderName}</div>
+
+        <div
+          className={styles.moviesParentContainer}
+          ref={moviesParentContainer}
+        >
+          <div
+            className={styles.arrowLeft}
+            ref={arrowLeft}
+            onClick={() => handleClick('left')}
+          >
+            <RiArrowLeftWideFill size={50} />
+          </div>
+          <div ref={moviesContainer} className={styles.moviesContainer}>
+            {data ? data.map(assembleCards) : 'Carregando'}
+          </div>
+          <div
+            className={styles.arrowRight}
+            onClick={() => handleClick('right')}
+          >
+            <RiArrowRightWideFill size={50} />
+          </div>
         </div>
-    </section>)
+      </div>
+    </section>
+  );
 }

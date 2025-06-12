@@ -19,24 +19,24 @@ function App() {
   const content = useRef(null);
   useTouchHover(content);
 
-  // ABRIR EM TELA CHEIA
-  useEffect(() => {
-    function full() {
-      content.current
-        .requestFullscreen()
-        .then(console.log)
-        .catch(console.error);
-    }
+  // // ABRIR EM TELA CHEIA
+  // useEffect(() => {
+  //   function full() {
+  //     content.current
+  //       .requestFullscreen()
+  //       .then(console.log)
+  //       .catch(console.error);
+  //   }
 
-    content.current.addEventListener(
-      'click',
-      (event) => {
-        console.log('foi');
-        full();
-      },
-      { once: true }
-    );
-  }, [content]);
+  //   content.current.addEventListener(
+  //     'click',
+  //     (event) => {
+  //       console.log('foi');
+  //       full();
+  //     },
+  //     { once: true }
+  //   );
+  // }, [content]);
 
   return (
     <>

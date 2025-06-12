@@ -17,10 +17,75 @@
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 5px;
-  overflow-x: scroll;
+  overflow-x: hidden;
   padding: 0 10px;
 }
 
 .moviesContainer::-webkit-scrollbar {
   display: none;
+}
+
+.moviesParentContainer {
+  position: relative;
+  width: 100%;
+}
+
+.moviesParentContainer:hover .arrowLeft,
+.moviesParentContainer:hover .arrowRight {
+  opacity: 1;
+}
+
+.arrowLeft,
+.arrowRight {
+  position: absolute;
+  z-index: 2;
+  width: 50px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 200ms, background-color 200ms;
+  cursor: pointer;
+}
+
+.arrowLeft:hover,
+.arrowRight:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.arrowLeft svg,
+.arrowRight svg {
+  transition: transform 200ms;
+}
+
+.arrowLeft:hover svg,
+.arrowRight:hover svg {
+  transform: scale(1.2);
+  transition: transform 200ms;
+}
+
+.arrowLeft {
+  left: 0;
+  top: 0;
+}
+
+.arrowRight {
+  right: 0;
+  top: 0;
+}
+
+@media (max-width: 678px) {
+  /* Ocultar as setas */
+
+  .arrowLeft,
+  .arrowRight {
+    display: none;
+  }
+
+  .moviesContainer {
+    overflow-x: scroll;
+  }
 }
