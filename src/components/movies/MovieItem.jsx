@@ -25,7 +25,7 @@ export default function MovieItem({ data, key }) {
 
   return (
     <div className={`${styles.item}`} data-item="with-hover" key={data.id}>
-      <img src={urlImage} loading="lazy" ref={img} onLoad={waitloading} />
+      <img src={urlImage} loading="eager" ref={img} onLoad={waitloading} />
       {imageLoading && (
         <Skeleton
           variant="rectangular"

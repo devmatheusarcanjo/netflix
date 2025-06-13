@@ -26,7 +26,14 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 1s;
+  transition: opacity 2s !important;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 .esqueleto {
