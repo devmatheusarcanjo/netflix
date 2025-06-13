@@ -38,28 +38,28 @@ export default function MovieCarousel({ gender }) {
   };
 
   // Efeito para dar scroll quando o usuario clicar no botão
-  useEffect(() => {
-    if (
-      !moviesContainer.current ||
-      !moviesParentContainer.current ||
-      !arrowLeft.current
-    )
-      return;
-    const pixels = moviesParentContainer.current.offsetWidth;
+  // useEffect(() => {
+  //   if (
+  //     !moviesContainer.current ||
+  //     !moviesParentContainer.current ||
+  //     !arrowLeft.current
+  //   )
+  //     return;
+  //   const pixels = moviesParentContainer.current.offsetWidth;
 
-    moviesContainer.current.scrollTo({
-      behavior: 'smooth',
-      left: pixels * positionScroll - 50,
-    });
+  //   moviesContainer.current.scrollTo({
+  //     behavior: 'smooth',
+  //     left: pixels * positionScroll - 50,
+  //   });
 
-    if (positionScroll < 1) {
-      arrowLeft.current.style.opacity = 0;
-      arrowLeft.current.style.pointerEvents = 'none';
-    } else {
-      arrowLeft.current.style.opacity = '';
-      arrowLeft.current.style.pointerEvents = '';
-    }
-  }, [positionScroll]);
+  //   if (positionScroll < 1) {
+  //     arrowLeft.current.style.opacity = 0;
+  //     arrowLeft.current.style.pointerEvents = 'none';
+  //   } else {
+  //     arrowLeft.current.style.opacity = '';
+  //     arrowLeft.current.style.pointerEvents = '';
+  //   }
+  // }, [positionScroll]);
 
   const handleClick = useCallback((direction) => {
     if (direction === 'right') return setPositionScroll((atual) => ++atual);
