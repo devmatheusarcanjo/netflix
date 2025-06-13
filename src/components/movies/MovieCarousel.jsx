@@ -67,7 +67,7 @@ export default function MovieCarousel({ gender }) {
 
     setTimeout(() => {
       refContent.current.style.opacity = inView ? 1 : 0;
-    }, 10);
+    }, 100);
   }, [inView]);
 
   return (
@@ -75,7 +75,7 @@ export default function MovieCarousel({ gender }) {
       <div
         className={styles.content}
         style={{
-          display: inView ? 'flex' : 'none',
+          visibility: inView ? 'visible' : 'hidden',
         }}
         ref={refContent}
       >
