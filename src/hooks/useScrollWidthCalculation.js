@@ -1,12 +1,11 @@
 import { useEffect, useCallback, useState } from 'react';
 import serviceScrollWidthCalculation from '@/utils/serviceScrollWidthCalculation.js';
+import { useLayoutEffect } from 'react';
 
-export default function useScrollWidthCalculation({
-  element,
-  setData,
-  getMovies,
-  gender,
-}) {
+export default function useScrollWidthCalculation(
+  { setData, getMovies, gender, inView },
+  element
+) {
   const [condition, setCondition] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -23,7 +22,7 @@ export default function useScrollWidthCalculation({
         setCondition(result);
       }
     },
-    [element, condition, page]
+    [condition, page, inView]
   );
 
   useEffect(() => {
@@ -38,13 +37,13 @@ export default function useScrollWidthCalculation({
     });
   }, [page]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!element) return;
 
     element.addEventListener('scroll', handleCondition);
 
-    return () => {
-      element.removeEventListener('scroll', handleCondition);
-    };
-  }, [handleCondition]);
+    // return () => {
+    //   element.removeEventListener('scroll', handleCondition);
+    // };
+  }, [handleCondition, inView]);
 }

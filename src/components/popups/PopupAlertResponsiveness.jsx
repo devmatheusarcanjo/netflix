@@ -11,7 +11,6 @@ export default function PopupAlertResponsiveness({ title, text, children }) {
   const popup = useRef(undefined);
 
   const dontShowAgain = useCallback(({ target }) => {
-    console.log(target.checked);
     setItem('showDeviceAlert', target.checked);
   });
 
@@ -20,8 +19,6 @@ export default function PopupAlertResponsiveness({ title, text, children }) {
       popup.current.remove();
     }
   });
-
-  console.log(showAlert);
 
   return showAlert ? null : (
     <div className={styles.container} ref={popup}>

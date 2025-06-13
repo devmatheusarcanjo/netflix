@@ -2,19 +2,15 @@
 
 Esse projeto é uma copia da netflix com a intenção de praticar React
 
-
-
-
 #Funcoes
 
 • Listagens de filmes por genero
-• Listagem de filmes por data de lançamento 
+• Listagem de filmes por data de lançamento
 • Recomendações de filmes baseado no que o usuário clicou/assistiu
-
 
 #Layout
 • Hover crescente exatamente igual o da netflix
-• Filtro avançado 
+• Filtro avançado
 
 #Sobre o hover
 •• como funciona
@@ -25,3 +21,7 @@ Esse projeto é uma copia da netflix com a intenção de praticar React
 • O elemento que você quer que o hover seja aplicado, apenas defina o atributo: data-item='with-hover'. Dessa forma o useHover ira inserir uma tag e aplicar o efeito de hover.
 
 • Por padrão a cor do hover é branca com opacidade de 30%. voce pode mudar isso passando outro atributo para o elemento: (data-color='cor-hover'). precisa ser exatamente dessa forma.
+
+#Detalhes
+
+- No desktop ao passar o mouse sobre uma lista de filmes, as setas sao exibidas

@@ -17,4 +17,6 @@ export {
   IoIosArrowDown,
   FaPlay,
   IoMdAdd,
+  RiArrowLeftWideFill,
+  RiArrowRightWideFill,
 };

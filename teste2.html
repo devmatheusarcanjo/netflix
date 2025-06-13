@@ -1,86 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Animação Lottie</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #333;
-        }
-        #animation {
-            width: 100px;
-            height: 100px;
-            color: white;
-            font-size: 4rem;
-        }
-        
-        svg {
-            color: white;
-        }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #333;
+      }
+      #animation {
+        width: 100px;
+        height: 100px;
+        color: white;
+        font-size: 4rem;
+      }
+
+      svg {
+        color: white;
+      }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.3.4/lottie.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="animation"></div>
 
     <script>
-        // Função para carregar o arquivo JSON
-        
-        function executar(json) {
-            
-            
-            
-            fetch(`./assets/${json}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(animationData => {
-                // Verifique se animationData e suas propriedades estão definidas
-                console.log(animationData); // Adicione esta linha para ver o conteúdo
-                if (!animationData.layers || animationData.layers.length === 0) {
-                    throw new Error('O arquivo JSON não contém camadas válidas.');
-                }
-                const animationContainer = document.getElementById('animation');
-                const animation = lottie.loadAnimation({
-                    container: animationContainer,
-                    renderer: 'svg',
-                    loop: true,
-                    autoplay: true,
-                    animationData: animationData
-                });
-                
-                animation.setSpeed(0.2)
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
+      // Função para carregar o arquivo JSON
+
+      function executar(json) {
+        fetch(`./assets/${json}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then((animationData) => {
+            // Verifique se animationData e suas propriedades estão definidas
+            if (!animationData.layers || animationData.layers.length === 0) {
+              throw new Error('O arquivo JSON não contém camadas válidas.');
+            }
+            const animationContainer = document.getElementById('animation');
+            const animation = lottie.loadAnimation({
+              container: animationContainer,
+              renderer: 'svg',
+              loop: true,
+              autoplay: true,
+              animationData: animationData,
             });
-            
-            
-        }
-        
-        
-        let count = 1;
-        
-        const loop = setInterval(() => {
-            executar(`animation (${count++}).json`)
-            
-            if(count > 20) clearInterval(loop)
-        }, 20)
-        
-        
-        
-        
-        
-        
+
+            animation.setSpeed(0.2);
+          })
+          .catch((error) => {
+            console.error(
+              'There was a problem with the fetch operation:',
+              error
+            );
+          });
+      }
+
+      let count = 1;
+
+      const loop = setInterval(() => {
+        executar(`animation (${count++}).json`);
+
+        if (count > 20) clearInterval(loop);
+      }, 20);
     </script>
-</body>
+  </body>
 </html>

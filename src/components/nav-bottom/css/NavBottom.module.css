@@ -1,5 +1,5 @@
 .container {
-    background-color: var(--color-black3);
+  background-color: var(--color-black3);
 }
 
 .containerIcon {
@@ -10,25 +10,29 @@
 }
 
 .ativo {
-    color: var(--color-white);    
+  color: var(--color-white);
 }
 
 .inativo {
-    color: var(--color-grey2); 
+  color: var(--color-grey2);
 }
 
 .text {
-    font-size: .7rem;
+  font-size: 0.7rem;
 }
 
 .content {
-    display: flex;
-    padding: 10px;
+  display: flex;
+  padding: 10px;
+}
+
+.content * {
+  text-decoration: none;
 }
 
 .containerIcon {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
