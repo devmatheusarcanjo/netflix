@@ -13,7 +13,7 @@
   transition: transform 300ms;
 }
 
-.item:hover {
+.item:active {
   transform: scale(0.98);
 }
 
