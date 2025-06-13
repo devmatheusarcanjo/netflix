@@ -7,8 +7,6 @@ import { getAllGenres } from '@/components/movies/contant';
 
 const allGenres = getAllGenres();
 
-console.log(allGenres);
-
 export default function Inicio() {
   /* useRef utilizado para aplicar o efeito de hover nos cards de filmes */
 
@@ -18,8 +16,9 @@ export default function Inicio() {
     <div className={`${styles.container}`}>
       <FilterHome />
       <FeaturedMovie />
-      {allGenres.map((number, index) => {
-        if (true) return <MovieCarousel gender={number} />;
+
+      {[...allGenres].map((number, index) => {
+        return <MovieCarousel gender={number} key={number} />;
       })}
 
       {/* <MovieCarousel gender={allGenres[0]} /> */}

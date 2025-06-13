@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './css/MovieItem.module.css';
 import { pathImage } from '@/utils/createPathToTMDB.js';
-import LazyLoad from 'react-lazyload';
+import Skeleton from '@mui/material/Skeleton';
 
 function Esqueleto() {
   return <div className={styles.esqueleto}></div>;
@@ -16,26 +16,24 @@ export default function MovieItem({ data, key }) {
 
   const img = useRef(undefined);
 
-  useEffect(() => {
-    if (img.current) {
-      img.current.addEventListener(
-        'load',
-        () => {
-          setImageLoading(false);
-        },
-        { once: true }
-      );
-    }
-  }, [img]);
-
   const waitloading = useCallback(() => {
+    // Quando a imagem estiver na referencia e quando ela carregar, ira executar, mas só vai marcar como carregada apos realmente for carregada
+    if (img.current && !imageLoading) return;
     setImageLoading(false);
-  }, [imageLoading]);
+    img.current.style.opacity = 1;
+  }, [imageLoading, img]);
 
   return (
     <div className={`${styles.item}`} data-item="with-hover" key={data.id}>
       <img src={urlImage} loading="lazy" ref={img} onLoad={waitloading} />
-      {imageLoading ? <Esqueleto /> : null}
+      {imageLoading && (
+        <Skeleton
+          variant="rectangular"
+          animation="pulse"
+          width={150}
+          height={220}
+        />
+      )}
     </div>
   );
 }

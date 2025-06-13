@@ -1,19 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
-import LayoutPadrao from './templates/LayoutDefault.jsx';
-import { FaSearch, FaDownload } from './components/icons/Icons.jsx';
+import LayoutPadrao from './templates/LayoutDefault';
+import { FaSearch, FaDownload } from './components/icons/Icons';
 import Home from '@/pages/Home.jsx';
 import styles from './App.module.css';
 import useTouchHover, { styleHover } from '@/hooks/useTouchHover.js';
 import PopupAlertResponsiveness from './components/popups/PopupAlertResponsiveness.jsx';
 import ifDeviceMobile from './utils/ifDeviceMobile.js';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Game from './pages/Game.jsx';
+import News from './pages/News.jsx';
+import MyNetflix from './pages/MyNetflix.jsx';
+
+import dataPages from './pages/dataPage/dataPages';
 
 function App() {
-  const [dadosHeader, setDadosHeader] = useState({
-    comLogo: true,
-    titulo: 'Minha conta',
-    icones: [FaSearch, FaDownload],
-  });
-
   const mobile = ifDeviceMobile();
 
   const content = useRef(null);
@@ -52,9 +52,42 @@ function App() {
 
       <div className={styles.containerCenter} ref={content}>
         <div className={`${styles.container} ${styleHover.global}`}>
-          <LayoutPadrao dadosHeader={dadosHeader}>
-            <Home />
-          </LayoutPadrao>
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <LayoutPadrao dadosHeader={dataPages.homePageData}>
+                    <Home />
+                  </LayoutPadrao>
+                }
+              />
+              <Route
+                path="/game"
+                element={
+                  <LayoutPadrao dadosHeader={dataPages.gamePageData}>
+                    <Game />
+                  </LayoutPadrao>
+                }
+              />
+              <Route
+                path="/news"
+                element={
+                  <LayoutPadrao dadosHeader={dataPages.newsPageData}>
+                    <News />
+                  </LayoutPadrao>
+                }
+              />
+              <Route
+                path="/my-netflix"
+                element={
+                  <LayoutPadrao dadosHeader={dataPages.myNetflixPageData}>
+                    <MyNetflix />
+                  </LayoutPadrao>
+                }
+              />
+            </Routes>
+          </BrowserRouter>
         </div>
       </div>
     </>

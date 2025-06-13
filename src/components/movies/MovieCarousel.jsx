@@ -5,8 +5,14 @@ import styles from './css/MovieCarousel.module.css';
 import { response, genres, getGenreName } from './contant.js';
 import useScrollWidthCalculation from '@/hooks/useScrollWidthCalculation.js';
 import { RiArrowLeftWideFill, RiArrowRightWideFill } from 'react-icons/ri';
+import { useInView } from 'react-intersection-observer';
 
 export default function MovieCarousel({ gender }) {
+  const { ref, inView } = useInView({
+    // triggerOnce: true,
+    // threshold: 0.5,
+    rootMargin: '1500px',
+  });
   const [data, setData] = useState([]);
   const moviesContainer = useRef();
   const moviesParentContainer = useRef();
@@ -14,12 +20,16 @@ export default function MovieCarousel({ gender }) {
   const [positionScroll, setPositionScroll] = useState(0);
 
   // Carregar os itens e atualizar conforme o usuario for chegando ao fim do scroll de cada container
-  useScrollWidthCalculation({
-    element: moviesContainer.current,
-    getMovies,
-    setData,
-    gender,
-  });
+  useScrollWidthCalculation(
+    {
+      // element: moviesContainer.current,
+      getMovies,
+      setData,
+      gender,
+      inView,
+    },
+    moviesContainer.current
+  );
 
   const assembleCards = (data) => {
     return data.map((item) => {
@@ -59,10 +69,22 @@ export default function MovieCarousel({ gender }) {
 
   const movies = response.results;
   const genderName = getGenreName(gender);
+  const t = true;
+
+  const elemento = useRef();
+
+  useEffect(() => {
+    if (!elemento.current) return;
+
+    elemento.current.style.opacity = inView ? 1 : 0.5;
+  }, [inView]);
 
   return (
-    <section className={styles.container}>
-      <div className={styles.content}>
+    <section className={styles.container} ref={ref}>
+      <div
+        className={styles.content}
+        style={{ display: inView ? 'flex' : 'none' }}
+      >
         <div className={styles.padding}>{genderName}</div>
 
         <div
@@ -77,7 +99,7 @@ export default function MovieCarousel({ gender }) {
             <RiArrowLeftWideFill size={50} />
           </div>
           <div ref={moviesContainer} className={styles.moviesContainer}>
-            {data ? data.map(assembleCards) : 'Carregando'}
+            {data && data.map(assembleCards)}
           </div>
           <div
             className={styles.arrowRight}
