@@ -98,14 +98,9 @@
 }
 
 @media (min-width: 1024px) {
-  /* Ocultar as setas */
-
-  .arrowLeft,
-  .arrowRight {
-    display: none;
-  }
-
   .moviesContainer {
     overflow: visible;
+    transition-timing-function: in-ease;
+    transition-duration: 1000ms;
   }
 }

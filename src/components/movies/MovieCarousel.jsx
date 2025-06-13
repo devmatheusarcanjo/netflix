@@ -20,7 +20,12 @@ export default function MovieCarousel({ gender }) {
   const moviesContainer = useRef();
   const moviesParentContainer = useRef();
   const arrowLeft = useRef(); // Referencia para ocultar a seta da esquerda quando nao tiver mais filmes para o lado esquerdo
-  const [positionScroll, setPositionScroll] = useState(0); // Estado para permitir o scroll da lista de filmes atraves dos botoes
+  const arrowRight = useRef(); // Referencia para ocultar a seta da esquerda quando nao tiver mais filmes para o lado direito
+  const [positionScroll, setPositionScroll] = useState({
+    position: 0,
+    blockAddition: false,
+    blockRemoval: false,
+  }); // Estado para permitir o scroll da lista de filmes atraves dos botoes
   const refContent = useRef(); // Referencia para aplicar no container que exibe a lista de filmes e aplicar uma animação de opacidade
   const isDesktop = useMediaQuery({ minWidth: deviceWidth.minDesktop });
 
@@ -45,19 +50,40 @@ export default function MovieCarousel({ gender }) {
   // Efeito para dar scroll quando o usuario clicar no botão
   useEffect(() => {
     utilScroll({
-      isDesktop,
       moviesContainer,
       moviesParentContainer,
       arrowLeft,
       positionScroll,
+      isDesktop,
+      setPositionScroll,
+      arrowRight,
     });
   }, [positionScroll]);
 
-  const handleClick = useCallback((direction) => {
-    if (direction === 'right') return setPositionScroll((atual) => ++atual);
+  const handleClick = useCallback(
+    (direction) => {
+      // if (direction === 'right') return setPositionScroll((atual) => ++atual);
 
-    setPositionScroll((atual) => (atual >= 1 ? --atual : 0));
-  }, []);
+      // setPositionScroll((atual) => (atual >= 1 ? --atual : 0));
+
+      if (!positionScroll.blockAddition && direction === 'right') {
+        console.log('Adicionado');
+        console.log(positionScroll.blockAddition);
+        setPositionScroll((d) => ({
+          ...d,
+          position: d.position + 1,
+        }));
+      }
+
+      if (!positionScroll.blockRemoval && direction === 'left') {
+        setPositionScroll((d) => ({
+          ...d,
+          position: d.position >= 1 ? d.position - 1 : 0,
+        }));
+      }
+    },
+    [positionScroll]
+  );
 
   const movies = response.results;
   const genderName = getGenreName(gender);
@@ -98,6 +124,7 @@ export default function MovieCarousel({ gender }) {
             {data && data.map(assembleCards)}
           </div>
           <div
+            ref={arrowRight}
             className={styles.arrowRight}
             onClick={() => handleClick('right')}
           >

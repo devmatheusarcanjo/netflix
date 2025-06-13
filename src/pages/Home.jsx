@@ -17,11 +17,11 @@ export default function Inicio() {
       <FilterHome />
       {/* <FeaturedMovie /> */}
 
-      {[...allGenres].map((number, index) => {
+      {/* {[...allGenres].map((number, index) => {
         return <MovieCarousel gender={number} key={number} />;
-      })}
+      })} */}
 
-      {/* <MovieCarousel gender={allGenres[0]} /> */}
+      <MovieCarousel gender={allGenres[0]} />
     </div>
   );
 }

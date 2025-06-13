@@ -74,5 +74,6 @@
     max-width: 16% !important;
     min-height: 255px !important;
     max-height: 255px !important;
+    overflow: visible !important;
   }
 }
