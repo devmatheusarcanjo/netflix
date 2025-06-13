@@ -65,3 +65,14 @@
     background-color: #333333;
   }
 } */
+
+@media (min-width: 1024px) {
+  /* Ocultar as setas */
+
+  .item {
+    min-width: 16% !important;
+    max-width: 16% !important;
+    min-height: 255px !important;
+    max-height: 255px !important;
+  }
+}

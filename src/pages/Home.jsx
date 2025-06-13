@@ -15,7 +15,7 @@ export default function Inicio() {
   return (
     <div className={`${styles.container}`}>
       <FilterHome />
-      <FeaturedMovie />
+      {/* <FeaturedMovie /> */}
 
       {[...allGenres].map((number, index) => {
         return <MovieCarousel gender={number} key={number} />;

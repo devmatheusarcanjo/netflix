@@ -6,6 +6,9 @@ import { response, genres, getGenreName } from './contant.js';
 import useScrollWidthCalculation from '@/hooks/useScrollWidthCalculation.js';
 import { RiArrowLeftWideFill, RiArrowRightWideFill } from 'react-icons/ri';
 import { useInView } from 'react-intersection-observer';
+import utilScroll from './utilScroll.ts';
+import { useMediaQuery } from 'react-responsive';
+import deviceWidth from '../../constants/deviceWidth.ts';
 
 export default function MovieCarousel({ gender }) {
   const { ref, inView } = useInView({
@@ -19,6 +22,7 @@ export default function MovieCarousel({ gender }) {
   const arrowLeft = useRef(); // Referencia para ocultar a seta da esquerda quando nao tiver mais filmes para o lado esquerdo
   const [positionScroll, setPositionScroll] = useState(0); // Estado para permitir o scroll da lista de filmes atraves dos botoes
   const refContent = useRef(); // Referencia para aplicar no container que exibe a lista de filmes e aplicar uma animação de opacidade
+  const isDesktop = useMediaQuery({ minWidth: deviceWidth.minDesktop });
 
   // Carregar os itens e atualizar conforme o usuario for chegando ao fim do scroll de cada container
   useScrollWidthCalculation(
@@ -40,26 +44,13 @@ export default function MovieCarousel({ gender }) {
 
   // Efeito para dar scroll quando o usuario clicar no botão
   useEffect(() => {
-    if (
-      !moviesContainer.current ||
-      !moviesParentContainer.current ||
-      !arrowLeft.current
-    )
-      return;
-    const pixels = moviesParentContainer.current.offsetWidth;
-
-    moviesContainer.current.scrollTo({
-      behavior: 'smooth',
-      left: pixels * positionScroll - 50,
+    utilScroll({
+      isDesktop,
+      moviesContainer,
+      moviesParentContainer,
+      arrowLeft,
+      positionScroll,
     });
-
-    if (positionScroll < 1) {
-      arrowLeft.current.style.opacity = 0;
-      arrowLeft.current.style.pointerEvents = 'none';
-    } else {
-      arrowLeft.current.style.opacity = '';
-      arrowLeft.current.style.pointerEvents = '';
-    }
   }, [positionScroll]);
 
   const handleClick = useCallback((direction) => {
@@ -88,7 +79,9 @@ export default function MovieCarousel({ gender }) {
         }}
         ref={refContent}
       >
-        <div className={styles.padding}>{genderName}</div>
+        <div className={`${styles.padding} ${styles.titleCategory}`}>
+          {genderName}
+        </div>
 
         <div
           className={styles.moviesParentContainer}
