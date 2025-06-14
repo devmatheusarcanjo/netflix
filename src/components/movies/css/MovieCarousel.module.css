@@ -1,14 +1,15 @@
 .container {
   width: 100%;
-  min-height: 269px !important;
+  /* min-height: 269px !important; */
 }
 
 .content {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  opacity: 0;
+  /* opacity: 0; */
   transition: opacity 500ms !important;
+  will-change: opacity;
 }
 
 .padding {
@@ -26,6 +27,7 @@
   gap: 5px;
   overflow-x: scroll;
   padding: 0 10px;
+  will-change: transform;
 }
 
 .moviesContainer::-webkit-scrollbar {
@@ -45,7 +47,7 @@
 .arrowLeft,
 .arrowRight {
   position: absolute;
-  z-index: 2;
+  z-index: 100;
   width: 50px;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);

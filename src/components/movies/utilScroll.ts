@@ -139,14 +139,12 @@ function evitarPassarDoFinal({
     // Consicionão para evitar loop infinito, pois ao mudar o estado, essa funcao pode ser executada novamente
     if (!positionScroll.blockAddition) {
       setPositionScroll((a) => ({ ...a, blockAddition: true }));
-      console.log('Adicao bloqueada');
     }
     return r;
   } else {
     // Consicionão para evitar loop infinito, pois ao mudar o estado, essa funcao pode ser executada novamente
     if (positionScroll.blockAddition) {
       setPositionScroll((a) => ({ ...a, blockAddition: false }));
-      console.log('Adicao desbloqueada');
     }
 
     return false;
@@ -154,12 +152,6 @@ function evitarPassarDoFinal({
 }
 
 function calculoPixelsParaOScroll({ positionScroll, pixels }): number {
-  console.log(pixels * positionScroll.position - 50);
-  console.log({
-    pixels,
-    positionScroll,
-  });
-
   return 1957 * positionScroll.position;
 }
 

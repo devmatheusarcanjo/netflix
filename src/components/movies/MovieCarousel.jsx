@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { getMovies } from '@/api/services/index.js';
-import MovieItem from './MovieItem.jsx';
+import MovieItem from './MovieItem.tsx';
 import styles from './css/MovieCarousel.module.css';
 import { response, genres, getGenreName } from './contant.js';
 import useScrollWidthCalculation from '@/hooks/useScrollWidthCalculation.js';
@@ -92,7 +92,7 @@ export default function MovieCarousel({ gender }) {
     if (!refContent.current) return;
 
     setTimeout(() => {
-      refContent.current.style.opacity = inView ? 1 : 0;
+      // refContent.current.style.opacity = inView ? 1 : 0;
     }, 100);
   }, [inView]);
 
@@ -101,7 +101,8 @@ export default function MovieCarousel({ gender }) {
       <div
         className={styles.content}
         style={{
-          visibility: inView ? 'visible' : 'hidden',
+          // visibility: inView ? 'visible' : 'hidden',
+          visibility: 'visible',
         }}
         ref={refContent}
       >

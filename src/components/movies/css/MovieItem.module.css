@@ -1,8 +1,8 @@
 .item {
   min-width: 150px !important;
   max-width: 150px !important;
-  min-height: 220px !important;
-  max-height: 220px !important;
+  /* min-height: 220px !important;
+  max-height: 220px !important; */
   border-radius: 5px;
   color: white;
   /* background-color: #fff; */
@@ -11,28 +11,46 @@
   align-items: center;
   position: relative;
   transition: transform 300ms;
+  border-radius: 10px !important;
+  will-change: transform opacity;
 }
+
+/* .item:hover {
+  z-index: 2;
+  transform: scale(1.5);
+  box-shadow: 0 0 10px black;
+} */
 
 .item:active {
   transform: scale(0.98);
 }
 
 /* Esqueleto */
-.item span {
+
+.esqueleto span {
   background-color: #222 !important;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 1;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .item img {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   object-fit: cover;
   opacity: 0;
   transition: opacity 2s !important;
   animation: fadeIn 0.5s ease forwards;
+  aspect-ratio: 2 / 1;
+}
+
+.containerImg {
+  width: 100%;
+  padding: 0 !important;
+  margin: 0;
 }
 
 @keyframes fadeIn {
@@ -41,39 +59,60 @@
   }
 }
 
-.esqueleto {
-  width: 100%;
-  height: 100%;
-  /* background-color: #333333; */
-  position: absolute;
-  top: 0;
-
-  /* 
-  animation-name: loadinggg;
-  animation-iteration-count: infinite;
-  animation-duration: 2s; */
-}
-
-/* @keyframes loadinggg {
-  0% {
-    background-color: #333333;
-  }
-  50% {
-    background-color: #666666;
-  }
-  100% {
-    background-color: #333333;
-  }
-} */
-
 @media (min-width: 1024px) {
   /* Ocultar as setas */
 
   .item {
-    min-width: 16% !important;
-    max-width: 16% !important;
-    min-height: 255px !important;
-    max-height: 255px !important;
-    overflow: visible !important;
+    min-width: 28vw !important;
+    max-width: 28vw !important;
+    /* min-height: 255px !important;
+    max-height: 255px !important; */
   }
+}
+
+/* .item:hover .details {
+  visibility: visible;
+  opacity: 1;
+  background-color: rgb(26, 26, 26);
+} */
+
+/* Detalhes */
+.details {
+  width: 100%;
+  background-color: #181818;
+  color: white;
+  transition: 500ms;
+  /* display: flex;
+  flex-direction: column;
+  gap: 0 !important; */
+}
+
+.details * {
+  will-change: transform;
+}
+
+.buttonControls {
+  display: flex;
+  padding: 20px;
+  gap: 10px;
+}
+
+.buttonControls i {
+  /* box-sizing: content-box; */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1000px !important;
+  cursor: pointer;
+}
+
+.buttonControls > div {
+  flex: 1;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.infos {
 }
