@@ -99,7 +99,7 @@ function adicionarPoiterEvents({
 
   if (ifLeft) {
     arrowLeft.current.style.opacity = 0;
-    arrowLeft.current.style.pointerEvents = 'none';
+    // arrowLeft.current.style.pointerEvents = 'none';
   } else {
     arrowLeft.current.style.opacity = '';
     arrowLeft.current.style.pointerEvents = '';
@@ -107,7 +107,7 @@ function adicionarPoiterEvents({
 
   if (ifRight) {
     arrowRight.current.style.opacity = 0;
-    arrowRight.current.style.pointerEvents = 'none';
+    // arrowRight.current.style.pointerEvents = 'none';
   } else {
     arrowRight.current.style.opacity = '';
     arrowRight.current.style.pointerEvents = '';

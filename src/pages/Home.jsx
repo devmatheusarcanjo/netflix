@@ -22,6 +22,8 @@ export default function Inicio() {
       return id === idDataModal;
     });
 
+    console.log(data);
+
     setDataModal(data);
   }, [idDataModal]);
 
@@ -30,7 +32,7 @@ export default function Inicio() {
       <FilterHome />
       {/* <FeaturedMovie /> */}
 
-      <MovieCarousel gender={getAllGenres()[0]} setAllData={setAllData} />
+      {/* <MovieCarousel gender={getAllGenres()[0]} setAllData={setAllData} />
       <MovieCarousel gender={getAllGenres()[1]} setAllData={setAllData} />
       <MovieCarousel gender={getAllGenres()[3]} setAllData={setAllData} />
       <MovieCarousel gender={getAllGenres()[4]} setAllData={setAllData} />
@@ -40,7 +42,13 @@ export default function Inicio() {
       <MovieCarousel gender={getAllGenres()[8]} setAllData={setAllData} />
       <MovieCarousel gender={getAllGenres()[9]} setAllData={setAllData} />
       <MovieCarousel gender={getAllGenres()[10]} setAllData={setAllData} />
-      <MovieCarousel gender={getAllGenres()[11]} setAllData={setAllData} />
+      <MovieCarousel gender={getAllGenres()[11]} setAllData={setAllData} /> */}
+
+      {[...getAllGenres()].map((number) => {
+        return (
+          <MovieCarousel gender={number} key={number} setAllData={setAllData} />
+        );
+      })}
 
       {/* Modal com detalhes do filme. Sera exibido quando o usuario passar o mouse por cima */}
       <MovieItemWithDetails

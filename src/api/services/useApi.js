@@ -19,4 +19,10 @@ function getMovies(options) {
   return response;
 }
 
+function GetMovieDetails(options) {
+  const pathURL = paths.getMovies;
+  const response = api(pathURL, options);
+  return response;
+}
+
 export { getMovies };

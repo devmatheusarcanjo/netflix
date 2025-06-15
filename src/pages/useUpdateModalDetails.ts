@@ -18,12 +18,20 @@ export default function useUpdateModalDetails({
       const pai = event.target.closest('[data-show-details="modal"]');
       if (!pai && positionModal.visible) {
         // clearTimeout(timeoutRef.current);
-        setPositionModal((e) => ({ ...e, visible: false }));
+        setPositionModal((e) => ({ ...e, visible: false, immediately: false }));
       }
+    }
+
+    // Remover o modal se o usuario der scroll na pagina
+    document.addEventListener('scroll', scrollBody);
+    function scrollBody() {
+      if (!positionModal.visible) return;
+      setPositionModal((e) => ({ ...e, visible: false, immediately: true }));
     }
 
     return () => {
       document.body.removeEventListener('mouseover', mouseover);
+      document.removeEventListener('scroll', scrollBody);
     };
   }, [positionModal]);
 
@@ -46,63 +54,42 @@ export default function useUpdateModalDetails({
 
     // });
     clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
-      modal.style.transformOrigin = 'center';
+    timeoutRef.current = setTimeout(
+      () => {
+        modal.style.transformOrigin = 'center';
 
-      // Poiter events para evitar interação com o modal quando ele estiver oculto
-      modal.style.width = positionModal.width + 'px';
+        // Poiter events para evitar interação com o modal quando ele estiver oculto
+        modal.style.width = positionModal.width + 'px';
 
-      modal.style.pointerEvents = positionModal.visible ? '' : 'none';
-      modal.style.cursor = positionModal.visible ? 'auto' : 'pointer';
+        modal.style.pointerEvents = positionModal.visible ? '' : 'none';
+        modal.style.cursor = positionModal.visible ? 'auto' : 'pointer';
 
-      // Essa linha faz com que a animação de transform sempre seja de 200ms, mas a opacidade, deve ser mais rapida quando o popup aparecer, e mais lenta quando for sumir
-      const transformStyle = 'transform 300ms'.concat(
-        positionModal.visible ? ', opacity 300ms' : ', opacity 500ms'
-      );
+        // Essa linha faz com que a animação de transform sempre seja de 200ms, mas a opacidade, deve ser mais rapida quando o popup aparecer, e mais lenta quando for sumir
+        const transformStyle = 'transform 300ms'.concat(
+          positionModal.visible ? ', opacity 300ms' : ', opacity 500ms'
+        );
 
-      // Aplicar 1.3 de escala quando o modal for exibido, e voltar ao tamanho normal quando for removido
-      modal.style.transform = positionModal.visible ? 'scale(1.3)' : 'scale(1)';
+        // Aplicar 1.3 de escala quando o modal for exibido, e voltar ao tamanho normal quando for removido
+        modal.style.transform = positionModal.visible
+          ? 'scale(1.3)'
+          : 'scale(1)';
 
-      // Atualizar a posição do modal com base na posição do width que aivou o evento de over
-      modal.style.top = positionModal.top + 'px';
-      modal.style.left = positionModal.left + 'px';
-      modal.style.transition = transformStyle;
+        // Atualizar a posição do modal com base na posição do width que aivou o evento de over
+        modal.style.top = positionModal.top + 'px';
+        modal.style.left = positionModal.left + 'px';
+        modal.style.transition = transformStyle;
 
-      // Condicional para aplicar um atraso na mudança de opacidade apenas quando o modal for removido, pra dar a sensação que ele tivesse voltado para o lugar original
-      if (!positionModal.visible) {
-        setTimeout(() => {
-          modal.style.opacity = '0';
-        }, 100);
-      } else {
-        modal.style.opacity = '1';
-      }
-
-      //   // Poiter events para evitar interação com o modal quando ele estiver oculto
-      //   modal.style.width = positionModal.width + 'px';
-      //   modal.style.pointerEvents = positionModal.visible ? '' : 'none';
-
-      //   // Essa linha faz com que a animação de transform sempre seja de 200ms, mas a opacidade, deve ser mais rapida quando o popup aparecer, e mais lenta quando for sumir
-      //   const transformStyle = 'transform 200ms'.concat(
-      //     positionModal.visible ? ', opacity 300ms' : ', opacity 500ms'
-      //   );
-      //   modal.style.transition = transformStyle;
-
-      //   // Aplicar 1.3 de escala quando o modal for exibido, e voltar ao tamanho normal quando for removido
-      //   modal.style.transform = positionModal.visible ? 'scale(1.3)' : 'scale(1)';
-
-      //   // Atualizar a posição do modal com base na posição do width que aivou o evento de over
-      //   modal.style.top = positionModal.top + 'px';
-      //   modal.style.left = positionModal.left + 'px';
-
-      //   // Condicional para aplicar um atraso na mudança de opacidade apenas quando o modal for removido, pra dar a sensação que ele tivesse voltado para o lugar original
-      //   if (!positionModal.visible) {
-      //     setTimeout(() => {
-      //       modal.style.opacity = '0';
-      //     }, 100);
-      //   } else {
-      //     modal.style.opacity = '1';
-      //   }
-    }, 700);
+        // Condicional para aplicar um atraso na mudança de opacidade apenas quando o modal for removido, pra dar a sensação que ele tivesse voltado para o lugar original
+        if (!positionModal.visible) {
+          // setTimeout(() => {
+          modal.style.opacity = '';
+          // }, 100);
+        } else {
+          modal.style.opacity = '1';
+        }
+      },
+      positionModal.immediately && !positionModal.visible ? 0 : 600
+    );
   }, [dataModal, positionModal]);
 }
 

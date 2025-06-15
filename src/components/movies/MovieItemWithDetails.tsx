@@ -48,7 +48,7 @@ export default function MovieItem({ data }) {
       data-id={data.id}
       key={data.id}
       ref={data.ref || undefined}
-      style={{ position: 'fixed' }}
+      style={{ position: 'absolute' }}
     >
       <div className={styles.containerImg}>
         <img ref={imgRef} src={urlImage} loading="eager" onLoad={waitloading} />

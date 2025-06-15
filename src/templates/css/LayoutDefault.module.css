@@ -1,9 +1,9 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  /* height: 100dvh; */
   width: 100vw;
-  position: relative;
+  /* position: relative; */
   /* pointer-events: none; */
 }
 

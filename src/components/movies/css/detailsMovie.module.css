@@ -1,0 +1,94 @@
+/* Detalhes */
+.details {
+  width: 100%;
+  background-color: #181818;
+  color: white;
+  transition: 500ms;
+  overflow: hidden;
+  /* display: flex;
+  flex-direction: column;
+  gap: 0 !important; */
+  padding: 20px;
+  margin-top: -15px;
+}
+
+.details * {
+  image-rendering: auto; /* ou: -webkit-optimize-contrast */
+}
+
+.buttonControls {
+  display: flex;
+  padding-bottom: 20px;
+  gap: 10px;
+}
+
+.buttonControls i {
+  /* box-sizing: content-box; */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1000px !important;
+  cursor: pointer;
+  transition: border 300ms;
+  border: solid 1px rgb(90, 90, 90);
+}
+
+.buttonControls i:hover {
+  border: solid 1px white;
+}
+
+.buttonControls svg {
+  width: 12px;
+  height: 12px;
+}
+
+.buttonControls > div {
+  flex: 1;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.ageRatingIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.modalRating {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  /* width: 100px; */
+  /* left: calc(-100%); */
+  border-radius: 1000px;
+  padding: 5px;
+  gap: 5px;
+  background-color: rgb(35, 35, 35);
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
+  transform: scale(0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 300ms;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+}
+
+.rating {
+  position: relative;
+}
+
+.rating:hover > .modalRating {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+  width: auto;
+}
+
+.containerTitle {
+  padding-bottom: 10px;
+}
+
+.title {
+  font-size: 15px;
+  line-height: 5px !important;
+}

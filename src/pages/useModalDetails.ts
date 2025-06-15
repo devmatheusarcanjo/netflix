@@ -51,6 +51,7 @@ function useSaveCordenadas({
         setPositionModal((d) => ({
           ...d,
           visible: true,
+          immediately: false,
           x: c.x,
           y: c.y,
           width: c.width,
@@ -71,6 +72,7 @@ function useSaveCordenadas({
           setPositionModal((d) => ({
             ...d,
             visible: true,
+            immediately: false,
             x: c.x,
             y: c.y,
             width: c.width,
