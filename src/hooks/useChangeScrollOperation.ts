@@ -1,53 +1,59 @@
-export default function utilScroll({
+import { useEffect } from 'react';
+import useDeviceDetection from './useDeviceDetection';
+
+export default function useChangeScrollOperation({
   moviesContainer,
   moviesParentContainer,
   arrowLeft,
   positionScroll,
-  isDesktop,
   setPositionScroll,
   arrowRight,
 }) {
-  // Só passa se todas as referencias estiverem visiveis
-  if (
-    !moviesContainer.current ||
-    !moviesParentContainer.current ||
-    !arrowLeft.current
-  )
-    return;
+  const device = useDeviceDetection().device;
 
-  // pixels define quantos pixels sera utilizado no scroll, ele pega a largura total do pai que é overflow hidden
-  const pixels = moviesParentContainer.current.offsetWidth - 300;
+  useEffect(() => {
+    // Só passa se todas as referencias estiverem visiveis
+    if (
+      !moviesContainer.current ||
+      !moviesParentContainer.current ||
+      !arrowLeft.current
+    )
+      return;
 
-  // Executa o scroll horizontal de acordo com o tipo de dispositivo.
-  // - Em dispositivos desktop, utiliza `transform: translateX` para mover os elementos manualmente.
-  //   Isso é necessário porque os cards de filmes expandem ao passar o mouse (hover), revelando detalhes adicionais.
-  //   Para que essa expansão funcione corretamente, o contêiner pai precisa ter `overflow: visible` —
-  //   o que impede o uso do scroll nativo.
-  // - Em dispositivos móveis, como não há interação de hover nem expansão dos cards, usamos `scrollIntoView` com scroll nativo.
-  //   Assim, mantemos o layout mais simples e funcional em telas menores.
+    // pixels define quantos pixels sera utilizado no scroll, ele pega a largura total do pai que é overflow hidden
+    const pixels = moviesParentContainer.current.offsetWidth - 300;
 
-  executarScroll({
-    isDesktop,
-    moviesContainer,
-    moviesParentContainer,
-    positionScroll,
-    pixels,
-    setPositionScroll,
-  });
+    // Executa o scroll horizontal de acordo com o tipo de dispositivo.
+    // - Em dispositivos desktop, utiliza `transform: translateX` para mover os elementos manualmente.
+    //   Isso é necessário porque os cards de filmes expandem ao passar o mouse (hover), revelando detalhes adicionais.
+    //   Para que essa expansão funcione corretamente, o contêiner pai precisa ter `overflow: visible` —
+    //   o que impede o uso do scroll nativo.
+    // - Em dispositivos móveis, como não há interação de hover nem expansão dos cards, usamos `scrollIntoView` com scroll nativo.
+    //   Assim, mantemos o layout mais simples e funcional em telas menores.
 
-  // Adiciona poiter events no botao da esqueda quando nao tiver mais scroll pra esquerda
-  adicionarPoiterEvents({
-    positionScroll,
-    arrowLeft,
-    arrowRight,
-    moviesContainer,
-    pixels,
-  });
+    executarScroll({
+      device,
+      moviesContainer,
+      moviesParentContainer,
+      positionScroll,
+      pixels,
+      setPositionScroll,
+    });
+
+    // Adiciona poiter events no botao da esqueda quando nao tiver mais scroll pra esquerda
+    adicionarPoiterEvents({
+      positionScroll,
+      arrowLeft,
+      arrowRight,
+      moviesContainer,
+      pixels,
+    });
+  }, [positionScroll]);
 }
 
 // Executa o scroll da forma correta de acordo com o dispositivo. Se for o ceular, o scroll sera o nativo, se for computador, o scroll sera manual
 function executarScroll({
-  isDesktop,
+  device,
   moviesContainer,
   moviesParentContainer,
   positionScroll,
@@ -62,12 +68,12 @@ function executarScroll({
     setPositionScroll,
   });
 
-  if (isDesktop) {
+  if (device === 'desktop') {
     scrollWithScrollTo({ moviesContainer, pixels, positionScroll }, 0);
     scrollWithTransform({ moviesContainer, pixels, positionScroll }, evitar);
   }
 
-  if (!isDesktop) {
+  if (!(device === 'desktop')) {
     scrollWithScrollTo({ moviesContainer, pixels, positionScroll }, evitar);
     scrollWithTransform({ moviesContainer, pixels, positionScroll }, 0);
   }

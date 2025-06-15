@@ -1,5 +1,4 @@
 .container {
-  height: 200vh;
   width: 100%;
   padding-top: 70px;
   display: flex;
@@ -9,6 +8,6 @@
   background-image: linear-gradient(to bottom, #333, black 90vh);
   font-size: var(--font-lg);
   font-weight: bold;
-  /* pointer-events: none; */
   overflow: visible;
+  /* pointer-events: none; */
 }

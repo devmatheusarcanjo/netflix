@@ -47,7 +47,6 @@ export default function useUpdateModalDetails({
     // });
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
-      console.log(modal);
       modal.style.transformOrigin = 'center';
 
       // Poiter events para evitar interação com o modal quando ele estiver oculto

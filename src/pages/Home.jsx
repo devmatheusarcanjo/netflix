@@ -1,14 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import FilterHome from '@/components/filters/FilterHome.jsx';
 import styles from './css/Home.module.css';
-import { getMovies } from '@/api/services/index.js';
 import { MovieCarousel, FeaturedMovie } from '@/components/movies/index.js';
 import { getAllGenres } from '@/components/movies/contant';
-import MovieItem from '../components/movies/MovieItem';
-import { dataOneMovie } from '../constants/movies';
-import useModalDetails from './useModalDetails';
-import { all } from 'axios';
 import MovieItemWithDetails from '../components/movies/MovieItemWithDetails';
+
 export default function Inicio() {
   const [allData, setAllData] = useState([]);
   const [idDataModal, setIdDataModal] = useState(null);
@@ -29,16 +25,6 @@ export default function Inicio() {
     setDataModal(data);
   }, [idDataModal]);
 
-  // Hook pra aplicar o hover na pagina e obter a posição do card que o usuario passar o mouse
-  // useModalDetails({
-  //   modalRef,
-  //   containerRef,
-  //   allData,
-  //   setIdDataModal,
-  //   positionModal,
-  //   setPositionModal,
-  // });
-
   return (
     <div ref={containerRef} className={`${styles.container}`}>
       <FilterHome />
@@ -46,7 +32,15 @@ export default function Inicio() {
 
       <MovieCarousel gender={getAllGenres()[0]} setAllData={setAllData} />
       <MovieCarousel gender={getAllGenres()[1]} setAllData={setAllData} />
-      <MovieCarousel gender={getAllGenres()[2]} setAllData={setAllData} />
+      <MovieCarousel gender={getAllGenres()[3]} setAllData={setAllData} />
+      <MovieCarousel gender={getAllGenres()[4]} setAllData={setAllData} />
+      <MovieCarousel gender={getAllGenres()[5]} setAllData={setAllData} />
+      <MovieCarousel gender={getAllGenres()[6]} setAllData={setAllData} />
+      <MovieCarousel gender={getAllGenres()[7]} setAllData={setAllData} />
+      <MovieCarousel gender={getAllGenres()[8]} setAllData={setAllData} />
+      <MovieCarousel gender={getAllGenres()[9]} setAllData={setAllData} />
+      <MovieCarousel gender={getAllGenres()[10]} setAllData={setAllData} />
+      <MovieCarousel gender={getAllGenres()[11]} setAllData={setAllData} />
 
       {/* Modal com detalhes do filme. Sera exibido quando o usuario passar o mouse por cima */}
       <MovieItemWithDetails

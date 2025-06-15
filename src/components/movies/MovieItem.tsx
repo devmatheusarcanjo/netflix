@@ -1,12 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import styles from './css/MovieItem.module.css';
 import { pathImage } from '@/utils/createPathToTMDB.js';
 import Skeleton from '@mui/material/Skeleton';
-
 import DetailsMovie from './detailsMovie';
-import movieItemType from '../../interfaces/movieItem';
-import useModalDetails from '../../pages/useModalDetails';
-import useUpdateModalDetails from '../../pages/useUpdateModalDetails';
 
 export default function MovieItem({ data }) {
   const [imageLoading, setImageLoading] = useState(true);

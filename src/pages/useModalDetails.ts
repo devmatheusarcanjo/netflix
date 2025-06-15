@@ -41,11 +41,12 @@ function useSaveCordenadas({
     function mouseOver({ target }) {
       // data-show-details com o valor true é para quando o motal aparecer sobre o width do filme, nao executar esse evento novamente, por tanto o modal tem o valor diferente nessa tag data-show-details
       const isSlide = target.closest('[data-show-details="slide-item"]');
-      let c = isSlide?.getBoundingClientRect();
+      if (!isSlide) return;
+
+      let c = isSlide.getBoundingClientRect();
 
       // Se for o item de slide, E o modal não estiver visivel E não tiver nenhum modal que esta sendo removido
       if (isSlide && !positionModal.visible && !timeoutRef.current) {
-        console.log('sobre');
         setIdDataModal(Number(isSlide.dataset.id));
         setPositionModal((d) => ({
           ...d,
@@ -65,8 +66,6 @@ function useSaveCordenadas({
         // Ao passar o mouse sobre varios slides, essa fucao é executada, e isso faz com que o codigo fique preso a referencia do primeiro slide que o usuario passou. dessa forma se o usuario passou por vvarios e parou em um especifico, o popup que deve ser exibido é o ultimo, por isso o timeout deve ser reciado para atualizar a referencia do ultimo popup que esta com o evento de hover
         clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => {
-          console.log('depois');
-          console.log(c);
           setIdDataModal(Number(isSlide.dataset.id));
 
           setPositionModal((d) => ({
@@ -89,7 +88,7 @@ function useSaveCordenadas({
 
     // Remover o evento se o componente for desmontado
     return () => {
-      containerRef.current.removeEventListener('mouseover', mouseOver);
+      containerRef.current?.removeEventListener('mouseover', mouseOver);
     };
   }, [positionModal]);
 }

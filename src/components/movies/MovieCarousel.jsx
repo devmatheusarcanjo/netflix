@@ -6,9 +6,10 @@ import { response, genres, getGenreName } from './contant.js';
 import useScrollWidthCalculation from '@/hooks/useScrollWidthCalculation.js';
 import { RiArrowLeftWideFill, RiArrowRightWideFill } from 'react-icons/ri';
 import { useInView } from 'react-intersection-observer';
-import utilScroll from './utilScroll.ts';
 import { useMediaQuery } from 'react-responsive';
 import deviceWidth from '../../constants/deviceWidth.ts';
+import useDeviceDetection from '../../hooks/useDeviceDetection.ts';
+import useChangeScrollOperation from '../../hooks/useChangeScrollOperation.ts';
 
 export default function MovieCarousel({ gender, setAllData }) {
   const { ref, inView } = useInView({
@@ -16,6 +17,7 @@ export default function MovieCarousel({ gender, setAllData }) {
     // threshold: 0.5,
     rootMargin: '1500px',
   });
+
   const [data, setData] = useState([]);
   const moviesContainer = useRef();
   const moviesParentContainer = useRef();
@@ -27,7 +29,6 @@ export default function MovieCarousel({ gender, setAllData }) {
     blockRemoval: false,
   }); // Estado para permitir o scroll da lista de filmes atraves dos botoes
   const refContent = useRef(); // Referencia para aplicar no container que exibe a lista de filmes e aplicar uma animação de opacidade
-  const isDesktop = useMediaQuery({ minWidth: deviceWidth.minDesktop });
 
   // Carregar os itens e atualizar conforme o usuario for chegando ao fim do scroll de cada container
   useScrollWidthCalculation(
@@ -53,17 +54,14 @@ export default function MovieCarousel({ gender, setAllData }) {
   };
 
   // Efeito para dar scroll quando o usuario clicar no botão
-  useEffect(() => {
-    utilScroll({
-      moviesContainer,
-      moviesParentContainer,
-      arrowLeft,
-      positionScroll,
-      isDesktop,
-      setPositionScroll,
-      arrowRight,
-    });
-  }, [positionScroll]);
+  useChangeScrollOperation({
+    moviesContainer,
+    moviesParentContainer,
+    arrowLeft,
+    positionScroll,
+    setPositionScroll,
+    arrowRight,
+  });
 
   const handleClick = useCallback(
     (direction) => {
