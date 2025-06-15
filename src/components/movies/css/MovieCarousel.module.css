@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-  /* min-height: 269px !important; */
 }
 
 .content {
@@ -18,16 +17,19 @@
 
 .titleCategory {
   font-size: 1.4vw;
+  padding: 0 50px;
 }
 
 .moviesContainer {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
   gap: 5px;
   overflow-x: scroll;
   padding: 0 10px;
   will-change: transform;
+  /* white-space: nowrap; */
+  flex-wrap: nowrap;
+  padding: 0, 50px;
 }
 
 .moviesContainer::-webkit-scrollbar {
@@ -37,6 +39,7 @@
 .moviesParentContainer {
   position: relative;
   max-width: 100vw;
+  padding: 0 50px;
 }
 
 .moviesParentContainer:hover .arrowLeft,
@@ -103,6 +106,7 @@
   .moviesContainer {
     overflow: visible;
     transition-timing-function: in-ease;
-    transition-duration: 1000ms;
+    transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+    transition-duration: 0.54s;
   }
 }

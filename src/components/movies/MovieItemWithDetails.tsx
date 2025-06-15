@@ -26,15 +26,29 @@ export default function MovieItem({ data }) {
     }
   }, [imageLoading, imgRef]);
 
+  // Hook pra aplicar o hover na pagina e obter a posição do card que o usuario passar o mouse
+  // useModalDetails({
+  //   modalRef,
+  //   containerRef,
+  //   allData,
+  //   setIdDataModal,
+  //   positionModal,
+  //   setPositionModal,
+  // });
+
+  // Hook pra aplicar o hover na pagina e obter a posição do card que o usuario passar o mouse
+  useModalDetails(data);
+
+  useUpdateModalDetails(data);
+
   return (
     <div
-      className={`${styles.item}`}
-      data-item="with-hover"
-      data-show-details={data.style ? 'modal' : 'slide-item'}
+      className={`${styles.item} ${styles.itemModal}`}
+      data-show-details="modal"
       data-id={data.id}
       key={data.id}
       ref={data.ref || undefined}
-      style={data.style || {}}
+      style={{ position: 'fixed' }}
     >
       <div className={styles.containerImg}>
         <img ref={imgRef} src={urlImage} loading="eager" onLoad={waitloading} />

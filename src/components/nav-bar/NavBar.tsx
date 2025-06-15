@@ -16,10 +16,10 @@ export default function NavBar({ withLogo = true, title, icons, key }) {
           )}
         </div>
         <div className={styles.icones}>
-          {icons?.length > 0 &&
-            [...icons]
-              .reverse()
-              .map((Component) => <Component size={20} key={Component.id} />)}
+          {icons.length > 0 &&
+            icons.map((Component) => (
+              <Component size={20} key={Component.id} />
+            ))}
         </div>
       </div>
     </nav>

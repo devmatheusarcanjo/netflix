@@ -8,59 +8,72 @@ import MovieItem from '../components/movies/MovieItem';
 import { dataOneMovie } from '../constants/movies';
 import useModalDetails from './useModalDetails';
 import { all } from 'axios';
-import MovieItemWithDetails from '../components/movies/MovieItemWithDetails';
+
 export default function Inicio() {
   const [allData, setAllData] = useState([]);
   const [idDataModal, setIdDataModal] = useState(null);
   const [dataModal, setDataModal] = useState();
-  const containerRef = useRef();
-  const modalRef = useRef();
-  const [positionModal, setPositionModal] = useState({
-    left: 0,
-    top: 0,
-    visible: false,
-  });
+
+  const stylePopup = {
+    position: 'absolute',
+    zIndex: 1000,
+  };
 
   useEffect(() => {
     const data = allData.find(({ id }) => {
+      console.log(id);
       return id === idDataModal;
     });
 
+    console.log('Selecionado');
     setDataModal(data);
   }, [idDataModal]);
 
-  // Hook pra aplicar o hover na pagina e obter a posição do card que o usuario passar o mouse
-  // useModalDetails({
-  //   modalRef,
-  //   containerRef,
-  //   allData,
-  //   setIdDataModal,
-  //   positionModal,
-  //   setPositionModal,
-  // });
+  useEffect(() => {
+    console.log('modalRef');
+    console.log(modalRef);
+  }, [dataModal]);
+
+  useEffect(() => {
+    console.log(allData);
+  }, [allData]);
+
+  const containerRef = useRef();
+  const modalRef = useRef();
+
+  useModalDetails({ modalRef, containerRef, allData, setIdDataModal });
+
+  // const exibirDetalhes = useCallback((event) => {
+  //   // const { target } = event;
+  //   // console.log(event.target.dataset.dataShowDetails);
+  //   console.log('event');
+  //   const pai = event.target.closest('[data-show-details]');
+  //   if (pai) {
+  //     const { left, top } = pai.getBoundingClientRect();
+  //     setPositionModal((d) => ({ ...d, top: top, left: left, visible: true }));
+  //     return;
+  //   }
+
+  //   setPositionModal((e) => ({ ...e, visible: false }));
+  // }, []);
 
   return (
     <div ref={containerRef} className={`${styles.container}`}>
       <FilterHome />
       {/* <FeaturedMovie /> */}
 
-      <MovieCarousel gender={getAllGenres()[0]} setAllData={setAllData} />
-      <MovieCarousel gender={getAllGenres()[1]} setAllData={setAllData} />
-      <MovieCarousel gender={getAllGenres()[2]} setAllData={setAllData} />
+      {/* {[...getAllGenres()].map((number) => {
+        return <MovieCarousel gender={number} key={number} />;
+      })} */}
 
-      {/* Modal com detalhes do filme. Sera exibido quando o usuario passar o mouse por cima */}
-      <MovieItemWithDetails
+      <MovieCarousel gender={getAllGenres()[0]} setAllData={setAllData} />
+
+      <MovieItem
         data={{
           ...dataModal,
           ref: modalRef,
           witchDetails: true,
-          positionModal,
-          dataModal,
-          setPositionModal,
-          modalRef,
-          containerRef,
-          allData,
-          setIdDataModal,
+          style: stylePopup,
         }}
       />
     </div>

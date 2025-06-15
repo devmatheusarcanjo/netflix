@@ -10,7 +10,7 @@ import utilScroll from './utilScroll.ts';
 import { useMediaQuery } from 'react-responsive';
 import deviceWidth from '../../constants/deviceWidth.ts';
 
-export default function MovieCarousel({ gender }) {
+export default function MovieCarousel({ gender, setAllData }) {
   const { ref, inView } = useInView({
     // triggerOnce: true,
     // threshold: 0.5,
@@ -41,10 +41,15 @@ export default function MovieCarousel({ gender }) {
     moviesContainer.current
   );
 
+  useEffect(() => {
+    setAllData((v) => [...v, ...data]);
+  }, [data]);
+
   const assembleCards = (data) => {
-    return data.map((item) => {
-      return <MovieItem data={item} key={item.id} />;
-    });
+    // return data.map((item) => {
+    // return <MovieItem data={item} key={item.id} />;
+    // });
+    return <MovieItem data={data} key={data.id} />;
   };
 
   // Efeito para dar scroll quando o usuario clicar no botão
@@ -67,8 +72,6 @@ export default function MovieCarousel({ gender }) {
       // setPositionScroll((atual) => (atual >= 1 ? --atual : 0));
 
       if (!positionScroll.blockAddition && direction === 'right') {
-        console.log('Adicionado');
-        console.log(positionScroll.blockAddition);
         setPositionScroll((d) => ({
           ...d,
           position: d.position + 1,

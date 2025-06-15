@@ -4,6 +4,6 @@ export default interface movieItemType {
     poster_path: string;
     backdrop_path: string;
     showDetails: boolean;
-    ref: 
+    style: object;
   };
 }

@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState, useRef } from 'react';
 import serviceScrollWidthCalculation from '@/utils/serviceScrollWidthCalculation.js';
 import { useLayoutEffect } from 'react';
 
@@ -8,6 +8,7 @@ export default function useScrollWidthCalculation(
 ) {
   const [condition, setCondition] = useState([]);
   const [page, setPage] = useState(1);
+  const refEvitarDuplicacao = useRef([]);
 
   const handleCondition = useCallback(
     (event) => {
@@ -26,6 +27,9 @@ export default function useScrollWidthCalculation(
   );
 
   useEffect(() => {
+    // Evitar execuções duplicadas
+    if (refEvitarDuplicacao.current.includes(page)) return;
+    refEvitarDuplicacao.current.push(page);
     getMovies({
       cache: true,
       params: {
@@ -33,7 +37,7 @@ export default function useScrollWidthCalculation(
         page,
       },
     }).then((e) => {
-      setData((before) => [...before, e.results]);
+      setData((before) => [...before, ...e.results]);
     });
   }, [page]);
 

@@ -5,7 +5,7 @@ import { FaPlay, FaPlus, FaRegThumbsUp, FaAngleDown } from 'react-icons/fa6';
 export default function DetailsMovie({ data }: movieItemType) {
   const tamanhoIcons = 20;
   return (
-    <div className={styles.details} data-show-details-append>
+    <div className={styles.details}>
       <div className={styles.buttonControls}>
         <i style={{ backgroundColor: 'white' }}>
           <FaPlay size={tamanhoIcons} color="#1F1F1F" />
@@ -23,7 +23,9 @@ export default function DetailsMovie({ data }: movieItemType) {
           </i>
         </div>
       </div>
-      <div className={styles.infos}></div>
+      <div className={styles.infos}>
+        <div>Idade</div>
+      </div>
     </div>
   );
 }

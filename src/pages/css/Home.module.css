@@ -1,13 +1,14 @@
 .container {
   height: 200vh;
   width: 100%;
-  position: relative;
   padding-top: 70px;
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 30px;
   background-image: linear-gradient(to bottom, #333, black 90vh);
   font-size: var(--font-lg);
   font-weight: bold;
-  pointer-events: none;
+  /* pointer-events: none; */
+  overflow: visible;
 }
