@@ -44,7 +44,7 @@ function useSaveCordenadas({
       if (!isSlide) return;
 
       let c = isSlide.getBoundingClientRect();
-
+      console.log(c);
       // Se for o item de slide, E o modal não estiver visivel E não tiver nenhum modal que esta sendo removido
       if (isSlide && !positionModal.visible && !timeoutRef.current) {
         setIdDataModal(Number(isSlide.dataset.id));
@@ -60,6 +60,7 @@ function useSaveCordenadas({
           right: c.right,
           bottom: c.bottom,
           left: c.left,
+          slide: isSlide,
         }));
 
         // Se não, entao verifica se o mouse esta sobre algum slide e se tem algum modal esperando para sumir. Se estiver visivel e esperando, remova, e exiba o conteudo do novo slide. {Se o evento de hover for executado novamente, limpe o timeout para nao exibir os detalhes do primeiro item que recebeu o hover}
@@ -81,6 +82,7 @@ function useSaveCordenadas({
             right: c.right,
             bottom: c.bottom,
             left: c.left,
+            slide: isSlide,
           }));
 
           timeoutRef.current = false;

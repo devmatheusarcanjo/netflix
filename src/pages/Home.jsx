@@ -30,7 +30,7 @@ export default function Inicio() {
   return (
     <div ref={containerRef} className={`${styles.container}`}>
       <FilterHome />
-      {/* <FeaturedMovie /> */}
+      <FeaturedMovie />
 
       {/* <MovieCarousel gender={getAllGenres()[0]} setAllData={setAllData} />
       <MovieCarousel gender={getAllGenres()[1]} setAllData={setAllData} />

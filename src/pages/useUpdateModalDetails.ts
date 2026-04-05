@@ -42,17 +42,8 @@ export default function useUpdateModalDetails({
     const modal = modalRef.current;
     // let largura = getComputedStyle(modal).width;
 
-    // const novaLargura = String(larguraAntes + larguraAntes / 2);
+    // const teste = calcularPosicao({ positionModal, modal });
 
-    // modal.style.width = positionModal.visible ? novaLargura + 'px' : '';
-    // let novaAltura = +getComputedStyle(modal).height.replace('px', '');
-    // modal.style.width = positionModal.visible ? larguraAntes + 'px' : '';
-
-    // const { left, top } = calcularPosicao(positionModal, {
-    //   novaLargura,
-    //   novaAltura,
-
-    // });
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(
       () => {
@@ -93,24 +84,21 @@ export default function useUpdateModalDetails({
   }, [dataModal, positionModal]);
 }
 
-function calcularPosicao(t, { novaLargura, novaAltura }) {
-  // const t = {
-  //   left: 825.703125,
-  //   top: 206.359375,
-  //   visible: true,
-  //   x: 825.703125,
-  //   y: 206.359375,
-  //   width: 250.234375,
-  //   height: 133.109375,
-  //   right: 1075.9375,
-  //   bottom: 339.46875,
-  // };
+function calcularPosicao({ modal }) {
+  const positionModal = {
+    left: 825.703125,
+    top: 206.359375,
+    visible: true,
+    x: 825.703125,
+    y: 206.359375,
+    width: 250.234375,
+    height: 133.109375,
+    right: 1075.9375,
+    bottom: 339.46875,
+  };
 
-  const left = (t.right - t.left) / 2 + t.left - novaLargura / 2;
-  const top = (t.bottom - t.top) / 2 + t.top - novaAltura / 3;
-  // const top = (t.bottom - t.top) / 2 + t.top;s
-  // const left = (t.right - t.left) / 2 + t.left;
-  // const top = (t.bottom - t.top) / 2 + t.top;
+  const larguraView = document.body.offsetWidth;
+  const larguraSlide = positionModal.width;
 
-  return { left, top };
+  if (positionModal.right > larguraView - 100) console.log(positionModal.slide);
 }

@@ -103,3 +103,9 @@
 
   /*  border-radius: inherit; */
 }
+
+@media (min-width: 700px) {
+  .container {
+    display: none !important;
+  }
+}
